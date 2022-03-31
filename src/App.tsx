@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+
+import './assets/styles/App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import PageRender from './PageRender';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { addUser } from 'redux/slice/authSlice';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const { currentUser } = useAppSelector(state => state.auth)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(addUser({ name: 'Nguyen Van Trinh' }))
+    }, [])
+
+
+    return (
+        <>
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/" component={PageRender} exact />
+                    <Route path="/:page" component={PageRender} exact />
+                    <Route path="/:page/:control" component={PageRender} exact />
+
+                </Switch>
+            </BrowserRouter>
+        </>
+    );
+
 }
 
 export default App;

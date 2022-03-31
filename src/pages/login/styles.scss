@@ -1,0 +1,30 @@
+
+.PageLogin {
+    background-color: #F7F7F7;
+    height: 810px;
+    border-radius: 16px;
+}
+.Logo{
+    margin-top: 82px;
+    width: 170px;
+    height: 136px;
+    left: 208px;
+    top: 82px;
+  
+}
+.LayoutLeft {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.FormLogin{
+    margin-top: 84px;
+}
+
+.form_Input{
+    height: 44px;
+    width: 400px;
+    border-radius: 8px;
+
+}
