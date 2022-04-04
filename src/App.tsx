@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import './assets/styles/App.css';
+import './App.less';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import PageRender from './PageRender';
 import { useAppDispatch, useAppSelector } from 'redux/hooks';
@@ -22,8 +22,8 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route path="/" component={PageRender} exact />
-                    <Route path="/:page" component={PageRender} exact />
-                    <Route path="/:page/:control" component={PageRender} exact />
+                    <Route path="/:tags" component={PageRender} exact />
+                    <Route path="/:tags/:control" component={PageRender} exact />
 
                 </Switch>
             </BrowserRouter>

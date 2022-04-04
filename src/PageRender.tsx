@@ -4,27 +4,41 @@ import { IParams } from './types/index'
 
 
 const generatePage = (name: string) => {
-    const page = () => require(`./pages/${name}`).default;
+    if (name.indexOf('login') === -1) {
+
+        const page = () => require(`./pages`).default;
+        try {
+            return React.createElement(page());
+        } catch (error) {
+            return <h2> Not Found</h2>
+        }
 
 
-    try {
-        return React.createElement(page());
-    } catch (error) {
-        return <h2> Not Found</h2>
+
+    } else {
+        const page = () => require(`./pages/login`).default;
+
+        try {
+            return React.createElement(page());
+        } catch (error) {
+            return <h2> Not Found</h2>
+        }
     }
+
 
 }
 
-
 const PageRender = () => {
-    const { page, control }: IParams = useParams();
+    const { tags, control } : IParams = useParams();
 
     let name = '';
-    if (page) {
-        name = control ? `${page}/[control]` : `${page}`;
+    if (tags) {
+        name = control ? `${tags}/${control}` : `${tags}`;
     }
-
+    console.log(tags)
     return generatePage(name)
+    
+
 }
 
 

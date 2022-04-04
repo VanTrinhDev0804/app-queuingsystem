@@ -1,53 +1,84 @@
-import { Form, Input, Button, Checkbox } from 'antd';
-import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { Link} from 'react-router-dom'
+import { Form, Input, Button, Space } from 'antd';
+import { useState } from 'react';
+
+import { Link } from 'react-router-dom'
+import iconErr from '../../assets/icon/errlogin.png'
+
 const FormLogin = () => {
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
-  };
+    const [checkUser, setCheckUser] = useState(true);
 
-  return (
-    <Form
-      name="normal_login"
-      className="login-form"
-      layout='vertical'
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        label = "Tên đăng nhập *"
-        name="username"
-        className='lableInput'
-      >
-        <Input placeholder="Username" className='form_Input' />
-      </Form.Item>
-      <Form.Item
-        label = "Mật khẩu *"
-        name="password"
-        className='lableInput'
+    const onFinish = (values: any) => {
+        console.log('Received values of form: ', values);
 
-      >
-        <Input
-          type="password"
-          placeholder="Password"
-          className='form_Input'
-        />
-      </Form.Item>
-      <Form.Item>
-    
-        <Link className="login-form-forgot" to={`/?login/forgot-password`}>
-          Quên mật khẩu?
-        </Link>
-      </Form.Item>
+    };
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
-          Đăng Nhập
-        </Button>
-        {/* Or <a href="">register now!</a> */}
-      </Form.Item>
-    </Form>
-  );
+    return (
+        <Form
+            name="normal_login"
+            className="login-form"
+            layout='vertical'
+            initialValues={{ remember: true }}
+            onFinish={onFinish}
+        >
+            <Form.Item
+                label="Tên đăng nhập *"
+                name="username"
+                className='lableInput'
+            >
+                <Input required />
+            </Form.Item>
+            <Form.Item
+                label="Mật khẩu *"
+                name="password"
+
+            >
+                <Input
+                    type="password"
+                    required
+                />
+            </Form.Item>
+            <Form.Item >
+                {
+                    checkUser ?
+                        <>
+                            <Link className="login-form-forgot" to={`/login/forgot-password`}>
+                                Quên mật khẩu?
+                            </Link>
+                        </> :
+                        <div className='login__Status'>
+                            <img src={iconErr} />
+                            <span>
+                                Sai mật khẩu hoặc tên đăng nhập
+                            </span>
+                        </div>
+
+                }
+
+            </Form.Item>
+
+            <Form.Item >
+                <div className='btn-group'>
+                    <Button type="primary" htmlType="submit" className="login-form-button">
+                        Đăng nhập
+                    </Button>
+
+                    {
+                        !checkUser ?
+                            <>
+                                <Link className="login-form-forgot" to={`/login/forgot-password`}>
+                                    Quên mật khẩu?
+                                </Link>
+                            </> : ""
+                    }
+
+
+                </div>
+
+
+                {/* Or <a href="">register now!</a> */}
+            </Form.Item>
+        </Form>
+    );
 };
 
 export default FormLogin

@@ -1,0 +1,198 @@
+@import '../assets/styles/variables';
+@import '../assets/styles/mixins';
+
+
+.homepage {
+    height: 810px;
+    border-radius: 16px;
+    background-color: $backgroundPageColor;
+
+    .Menubar {
+        background-color: $whiteColor;
+
+        &-Logo {
+            background-color: $whiteColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                margin-top: 32px;
+                margin-bottom: 65px;
+            }
+        }
+
+        .btn_logout {
+            @include btn;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: #FFF2E7;
+
+            background: #FFF2E7;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: $primaryColor;
+            position: absolute;
+            bottom: 30px;
+
+            img {
+                margin-right: 15px;
+                font-size: 16px;
+            }
+
+            &:hover {
+                background-color: $whiteColor;
+                border-color: $whiteColor;
+            }
+
+
+        }
+
+    }
+
+    .ant-menu-item-selected {
+        color: #fff !important;
+    }
+
+    .ant-breadcrumb-link {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #FF9138;
+        cursor: pointer;
+    }
+
+    header {
+        background-color: $backgroundPageColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .Header-acount {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            h3 {
+                width: 360px;
+                height: 48px;
+                background-color: #FF9138;
+                position: relative;
+                margin: 0;
+
+                p {
+                    font-family: 'Nunito';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 30px;
+                    color: #FFFFFF;
+                    position: relative;
+                    top: 10px;
+                    left: 20px;
+
+                }
+
+            }
+
+            &_notificaton {
+                position: relative;
+                margin-right: 24px;
+
+                .no-active {
+                    background-color: $primaryColor-100;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .ant-avatar-circle {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $primaryColor-100;
+                    cursor: pointer;
+                }
+
+
+                .Notification-layout {
+                    position: absolute;
+                    width: 360px;
+                    height: 526px;
+                    left: -100px;
+                    top: 59px;
+
+                    background-color: #FFFFFF;
+                    /* Pink shadow */
+                    overflow: hidden;
+                    box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+                    border-radius: 10px;
+
+                    .ant-list-split {
+                        overflow-y: scroll;
+                    }
+
+                    .ant-list-item-meta-title {
+                        font-family: 'Nunito';
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 16px;
+                        line-height: 24px;
+
+                        color: #BF5805;
+
+                    }
+
+                    .ant-list-item-meta-description {
+                        font-family: 'Nunito';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 24px;
+                        color: #535261;
+                    }
+                }
+            }
+
+            &_info {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                cursor: pointer;
+
+                .ant-avatar-circle {
+                    margin: 12px;
+                }
+
+                &-textWCome {
+                    position: absolute;
+                    top: 10px;
+                    font-family: 'Nunito';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 18px;
+                    color: $subtextColor;
+                }
+
+                &-name {
+                    margin-top: 25px;
+                    white-space: normal;
+                    font-family: 'Nunito';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 16px;
+                    line-height: 24px;
+                    white-space: nowrap;
+                    color: #535261;
+                }
+            }
+        }
+    }
+}

@@ -1,4 +1,4 @@
 export interface IParams {
-    page : string
+    tags : string
     control: string 
 }
