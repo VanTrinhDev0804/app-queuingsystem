@@ -1,0 +1,77 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+
+header {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $backgroundPageColor;
+
+    .Header-acount {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+
+
+
+        &_info {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+
+            .ant-avatar-circle {
+                margin: 12px;
+            }
+
+            &-textWCome {
+                position: absolute;
+                top: 10px;
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: $subtextColor;
+            }
+
+            &-name {
+                margin-top: 25px;
+                white-space: normal;
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+                white-space: nowrap;
+                color: #535261;
+            }
+        }
+    }
+}
+
+.ant-layout-header {
+    background-color: $backgroundPageColor;
+}
+
+.ant-breadcrumb-link {
+    a {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #7E7D88 !important;
+    }
+   
+}
+.ant-breadcrumb > span:last-child a {
+
+    color: $primaryColor !important;
+}

@@ -6,7 +6,7 @@ import { IParams } from './types/index'
 const generatePage = (name: string) => {
     if (name.indexOf('login') === -1) {
 
-        const page = () => require(`./pages`).default;
+        const page = () => require(`./pages/${name}`).default;
         try {
             return React.createElement(page());
         } catch (error) {
@@ -29,13 +29,13 @@ const generatePage = (name: string) => {
 }
 
 const PageRender = () => {
-    const { tags, control } : IParams = useParams();
+    const { page, control } : IParams = useParams();
 
     let name = '';
-    if (tags) {
-        name = control ? `${tags}/${control}` : `${tags}`;
+    if (page) {
+        name = control ? `${page}/${control}` : `${page}`;
     }
-    console.log(tags)
+   
     return generatePage(name)
     
 

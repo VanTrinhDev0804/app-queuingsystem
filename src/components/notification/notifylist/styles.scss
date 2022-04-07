@@ -1,0 +1,75 @@
+.Notification-layout {
+    position: absolute;
+    width: 360px;
+    height: 526px;
+    left: -100px;
+    top: 59px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+    border-radius: 10px;
+    z-index: 100;
+
+    h3 {
+        background-color: #FF9138;
+        padding-top: 10px;
+        padding-left: 16px;
+        width: 360px;
+        height: 48px;
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 30px;
+        color: #FFFFFF;
+        margin: 0;
+
+    }
+
+    &-list {
+        width: inherit;
+        height: inherit;
+        overflow-y: scroll;
+        transition: ease-in-out;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            /* color of the scroll thumb */
+            border-radius: 43px;
+            background-color: #FFC89B;
+            /* roundness of the scroll thumb */
+            // border: 3px solid orange;  /* creates padding around scroll thumb */
+        }
+
+    }
+
+
+
+
+    .ant-list-items {
+        padding: 0 24px;
+    }
+
+    .ant-list-item-meta-title {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0;
+        color: #BF5805;
+
+    }
+
+    .ant-list-item-meta-description {
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 24px;
+        color: #535261;
+    }
+}

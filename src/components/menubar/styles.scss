@@ -1,0 +1,64 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+
+.Menubar {
+    background-color: $whiteColor;
+
+    &-Logo {
+        background-color: $whiteColor;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            margin-top: 32px;
+            margin-bottom: 65px;
+        }
+    }
+
+    .btn_logout {
+        @include btn;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-color: #FFF2E7;
+
+        background: #FFF2E7;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: $primaryColor;
+        position: absolute;
+        bottom: 30px;
+
+        img {
+
+            margin-right: 15px;
+            font-size: 16px;
+        }
+
+        &:hover {
+            background-color: $whiteColor;
+            border-color: $whiteColor;
+        }
+
+
+    }
+
+}
+
+.ant-menu-item-selected {
+    color: #fff !important;
+
+}
+
+.ant-breadcrumb-link {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FF9138;
+    cursor: pointer;
+}

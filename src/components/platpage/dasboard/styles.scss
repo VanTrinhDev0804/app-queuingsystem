@@ -1,0 +1,18 @@
+@import '../../../assets/styles/variables';
+@import '../../../assets/styles/mixins';
+
+
+.homepage  {
+    height: 810px;
+    border-radius: 16px;
+    background-color: $backgroundPageColor;
+
+    // Content
+
+    .ant-layout-content {
+        margin: '24px 16px 0';
+        background-color: $backgroundPageColor;
+    }
+
+    
+}

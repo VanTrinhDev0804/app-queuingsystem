@@ -1,0 +1,24 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+.Header-acount_notificaton {
+    position: relative;
+    margin-right: 24px;
+
+    .no-active {
+        background-color: $primaryColor-100;
+        width: 20px;
+        height: 20px;
+    }
+
+    .ant-avatar-circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $primaryColor-100;
+        cursor: pointer;
+    }
+
+
+   
+}
