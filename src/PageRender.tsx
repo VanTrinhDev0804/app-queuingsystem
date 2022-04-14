@@ -7,13 +7,12 @@ const generatePage = (name: string) => {
     if (name.indexOf('login') === -1) {
 
         const page = () => require(`./pages/${name}`).default;
+    
         try {
             return React.createElement(page());
         } catch (error) {
             return <h2> Not Found</h2>
         }
-
-
 
     } else {
         const page = () => require(`./pages/login`).default;
@@ -32,8 +31,10 @@ const PageRender = () => {
     const { page, control } : IParams = useParams();
 
     let name = '';
+
+    
     if (page) {
-        name = control ? `${page}/${control}` : `${page}`;
+        name = `${page}`;
     }
    
     return generatePage(name)

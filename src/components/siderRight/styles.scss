@@ -1,0 +1,256 @@
+@import '../../assets//styles/variables';
+@import '../../assets//styles/mixins';
+
+
+.SiderRight {
+    width: 401px;
+    height: 810px;
+    background-color: $whiteColor;
+    box-shadow: 0px 4px 6px rgba(219, 219, 219, 0.5);
+    border-radius: 8px 0px 0px 8px;
+
+    h3 {
+        width: 118px;
+        height: 36px;
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 36px;
+        color: #FF7506;
+        white-space: nowrap;
+        margin-left: 24px;
+    }
+
+    &-Progress {
+        width: 353px;
+        margin: auto;
+
+    }
+
+    &-ProgressItem {
+        display: flex;
+        align-items: center;
+        height: 83px;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+        border-radius: 12px;
+        margin-top: 12px;
+
+        p {
+            margin: 0 16px;
+        }
+
+        .Progress-antd {
+            margin-left: 16px;
+        }
+
+        .Progress-name {
+            display: flex;
+            align-items: center;
+            margin: 0 16px;
+
+            img {
+                width: 14px;
+                height: 14px;
+                margin-right: 4px;
+            }
+
+            p {
+                margin: 0;
+                width: 49px;
+                height: 21px;
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 21px;
+                color: #FF7506
+            }
+
+        }
+
+        .dichvu {
+
+            p {
+                color: #4277FF;
+            }
+
+        }
+
+        .capso {
+
+            p {
+                color: #35C75A;
+            }
+
+        }
+
+        .Progress-description-active,
+        .Progress-description-noactive {
+            display: flex;
+            align-items: center;
+
+            img {
+                margin-right: 4px;
+                width: 4px;
+                height: 4px;
+            }
+
+            p {
+                margin: 0;
+                width: 87px;
+                height: 21px;
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 21px;
+                color: #7E7D88;
+                white-space: nowrap;
+
+                span {
+                    width: 38px;
+                    height: 18px;
+                    font-family: 'Nunito';
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: #FF7506;
+                    margin-left: 12px;
+                }
+            }
+
+        }
+
+        .dichvu {
+            p {
+                span {
+                    color: #4277FF;
+                }
+            }
+        }
+
+        .capso {
+            p {
+                span {
+                    color: #35C75A;
+                }
+            }
+        }
+
+
+
+
+        .Active-device {
+            width: 64px;
+            height: 36px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 24px;
+            line-height: 36px;
+            color: #535261;
+        }
+
+    }
+
+
+    &-Calendar {
+        margin: auto;
+        width: 353px;
+        height: 336px;
+        background: #FFFFFF;
+        box-shadow: 2px 2px 15px rgba(70, 64, 67, 0.1);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+
+        .react-calendar {
+            border: none;
+            padding: 16px 10px;
+        }
+
+        .react-calendar__navigation__prev2-button,
+        .react-calendar__navigation__next2-button {
+            display: none;
+        }
+
+        .react-calendar__navigation__prev-button,
+        .react-calendar__navigation__next-button {
+            width: 40px;
+            height: 40px;
+            color: #FF7506;
+        }
+
+        .react-calendar__navigation__label__labelText--from {
+            width: 30px;
+            height: 22px;
+            left: 4px;
+            top: 9px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #FF7506;
+            white-space: nowrap;
+        }
+
+        .react-calendar__month-view__weekdays__weekday {
+           abbr{
+            width: 20px;
+            height: 19px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 19px;
+            color: #FF9138;
+           }
+
+        }
+        .react-calendar__month-view__days__day--weekend,
+        .react-calendar__month-view__days__day{
+            abbr{
+                width: 9px;
+                height: 19px;  
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 19px;
+                color: #535261;
+                
+            }
+        }
+        .react-calendar__tile--now {
+            
+            background-color: $primaryColor;
+            border-radius: 8px;
+         
+        }
+
+        .react-calendar__tile--now:enabled:hover{
+            color: $whiteColor;
+            background: $primaryColor-100;
+        }
+
+    }
+
+
+    .ant-progress-text {
+
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 24px;
+        color: #535261;
+    }
+
+}

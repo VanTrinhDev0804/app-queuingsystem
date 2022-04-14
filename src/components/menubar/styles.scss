@@ -4,6 +4,8 @@
 
 .Menubar {
     background-color: $whiteColor;
+    box-shadow: 0px 4px 6px rgba(219, 219, 219, 0.5);
+    border-radius: 16px 0px 0px 16px;
 
     &-Logo {
         background-color: $whiteColor;

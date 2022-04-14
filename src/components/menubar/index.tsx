@@ -1,18 +1,21 @@
-import React, {useState}  from 'react'
+import React, {useEffect, useState}  from 'react'
 import {  Layout ,Menu, Button } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import './styles.scss'
+import { IParams } from 'types';
 
 
 
 const {Sider} = Layout
 const MenuSider = () => {
-    
     const history = useHistory()
-    const handleClick = (e: any) => {
-        history.push(e.key)
-
+    const {page} :IParams = useParams()
+    const  handleClick = (e : any) =>{
+        console.log(e.key)
+        history.push(e.key);
     }
+    
+  
   return (
     <Sider className='Menubar'>
                 <div className="Menubar-Logo">
@@ -22,9 +25,9 @@ const MenuSider = () => {
                 </div>
                 <div>
                     <Menu
+                        defaultSelectedKeys={[`/${page}`]}
                         onClick={handleClick}
                         mode="vertical"
-
                     >
                         <Menu.Item key="/dasboard" icon={<img src={require('../../assets/icon/menu/iconDasboard.png')} />}>
                             Dasboard

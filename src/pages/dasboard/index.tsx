@@ -1,11 +1,12 @@
 import React from 'react'
-import DasboardController from 'controller/dasboard'
+import DasboardComponent from 'components/platpage/dasboard'
+
 
 
 
 const Dasboard = () => {
   return (
-    <DasboardController/>
+    <DasboardComponent/>
   )
 }
 

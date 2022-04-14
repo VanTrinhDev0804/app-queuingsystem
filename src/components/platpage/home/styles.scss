@@ -3,12 +3,13 @@
 
 
 .ant-layout  {
+    width: 1440px;
     height: 810px;
     border-radius: 16px;
     background-color: $backgroundPageColor;
-
+    margin: auto;
     // Content
-
+ 
     .ant-layout-content {
         margin: '24px 16px 0';
         background-color: $backgroundPageColor;

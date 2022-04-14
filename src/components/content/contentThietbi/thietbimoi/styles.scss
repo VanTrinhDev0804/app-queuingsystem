@@ -1,0 +1,182 @@
+@import '../../../../assets//styles/variables';
+@import '../../../../assets/styles/mixins';
+
+
+.ContentCapSoMoi {
+    width: 1192px;
+    height: 604px;
+    background: #FFFFFF;
+    box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+    border-radius: 16px;
+    margin-left: 24px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    h2 {
+        margin-top: 24px;
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 32px;
+        line-height: 48px;
+        color: #FF7506;
+
+    }
+
+    &-Selection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .ant-select {
+            background: #FFFFFF;
+            border: 1.5px solid #D4D4D7;
+            box-sizing: border-box;
+            border-radius: 8px;
+            padding: 2px 0;
+
+            .dropmenu {
+                width: 400px;
+                height: 198px;
+                left: 0px;
+                top: 44px;
+                background: #FFFFFF;
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 8px;
+                color: #282739;
+            }
+        }
+
+    }
+
+
+
+    &-btn-group {
+
+        margin-top: 94px;
+
+        .btn-cancel {
+            width: 115px;
+            height: 48px;
+            background: #FFF2E7;
+            border: 1.5px solid #FF9138;
+            box-sizing: border-box;
+            box-shadow: 0px 0px 6px #E7E9F2;
+            border-radius: 8px;
+            color: #FF9138;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            margin: 16px;
+        }
+
+        .btn-continue {
+            margin: 16px;
+            width: 115px;
+            height: 48px;
+            background: #FF9138;
+            box-shadow: 0px 0px 6px #E7E9F2;
+            border-radius: 8px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #FFFFFF;
+        }
+    }
+}
+
+.ant-modal-content {
+    width: 469px;
+    height: 385px;
+    background: #FFFFFF;
+    border-radius: 24px;
+    overflow: hidden;
+    cursor: pointer  !important;
+    .ant-modal-body {
+        padding: 0;
+    }
+
+    .modelInSo-infor {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        margin-top: 48px;
+        margin-bottom: 44px;
+
+        h3 {
+            width: 279px;
+            height: 48px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 48px;
+            color: #535261;
+        }
+
+        h2 {
+            width: 236px;
+            height: 60px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 800;
+            font-size: 56px;
+            line-height: 60px;
+            color: #FF7506
+        }
+
+        p {
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 27px;
+            color: #282739;
+
+            span {
+                color: #535261;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .modelInSo-time {
+
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #FF9138;
+        padding: 10px;
+
+        height: 110px;
+
+        .modelInSo-day,
+        .modelInSo-date {
+            display: flex;
+
+            p {
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 22px;
+                line-height: 33px;
+                color: #FFFFFF;
+                margin: 0px 0px;
+
+            }
+
+            .day,
+            .date {
+                margin-left: 8px;
+            }
+        }
+    }
+
+
+}

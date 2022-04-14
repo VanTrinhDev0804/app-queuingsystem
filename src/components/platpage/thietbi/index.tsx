@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import './styles.scss'
 import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
+import ContentThietbi from 'components/content/contentThietbi';
 
 
 
@@ -16,8 +17,8 @@ const ThietbiComponent = () => {
         <HeaderPages title='Thiết bị'/>
 
         {/* content */}
-
-       
+        
+       <ContentThietbi/>
       </Layout>
     </Layout>
   )

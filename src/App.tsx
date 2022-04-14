@@ -22,8 +22,8 @@ function App() {
             <BrowserRouter>
                 <Switch>
                     <Route path="/" component={PageRender} exact />
-                    <Route path="/:page" component={PageRender} exact />
-                    <Route path="/:page/:control" component={PageRender} exact />
+                    <Route  path="/:page" component={PageRender} exact  />
+                    <Route path="/:page/:control" component={PageRender} exact   />
 
                 </Switch>
             </BrowserRouter>
