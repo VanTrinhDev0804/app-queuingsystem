@@ -10,7 +10,7 @@ header {
     align-items: center;
     background-color: $backgroundPageColor;
 
-   
+
 }
 
 .ant-layout-header {
@@ -26,9 +26,25 @@ header {
         line-height: 30px;
         color: #7E7D88 !important;
     }
-   
+
 }
-.ant-breadcrumb > span:last-child a {
+
+.ant-breadcrumb>span:last-child a {
 
     color: $primaryColor !important;
+}
+// .ant-breadcrumb{
+//     display: block;
+// }
+.ant-breadcrumb-separator {
+    width: 20px;
+    height: 20px;
+    margin: 0 16px;
+    img{
+       margin-bottom: 6px;
+        
+    }
+  
+
+
 }

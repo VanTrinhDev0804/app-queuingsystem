@@ -1,21 +1,33 @@
 import { ColumnsType } from "antd/lib/table"
 import { Link } from "react-router-dom"
 import { Interface } from "readline"
-
+// interface path react rourter
 export interface IParams {
     page ?: string
     control? : string 
 }
+
+// custom title for content
 export interface IDefaultTitle{
   text : string
 }
+
+// customs inter face for header
 export interface IHeaderAcount{
   checkControl ? : boolean 
 }
-export interface IHeader extends IHeaderAcount{
-    title ? : string
-    path ? : string
+export interface IBread{
+  titleBread?: string 
+  path?: string
 }
+export interface IHeader extends IHeaderAcount{
+   listTitle? :IBread[]
+}
+
+
+
+
+
 
 export interface IDataCharts{
   x: tring
@@ -23,6 +35,9 @@ export interface IDataCharts{
 }
 export interface ItemCharts{
   data : IDataCharts[]
+}
+export interface IControlPage{
+    controller: string
 }
 
 

@@ -3,7 +3,7 @@ import { DatePicker, Layout, Space, Select, Input } from 'antd'
 
 import './styles.scss'
 
-const ControllCapSo = () => {
+const ControllThietbi = () => {
 
     const { Option } = Select;
     const { Search } = Input
@@ -67,4 +67,4 @@ const ControllCapSo = () => {
   )
 }
 
-export default ControllCapSo
+export default ControllThietbi

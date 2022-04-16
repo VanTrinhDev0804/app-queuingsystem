@@ -5,6 +5,7 @@ import HeaderPages from '../../header';
 import SiderRinght from '../../siderRight';
 import './styles.scss'
 import DasboardContent from 'components/content/contentdasboard';
+import { routesDasboard } from './routes';
 
 
 
@@ -16,7 +17,7 @@ const DasboardComponent = () => {
             <MenuSider />
             <Layout>
                 {/* Header */}
-                <HeaderPages title='Dasboard' path='/dasboard' checkControl={false} />
+                <HeaderPages checkControl={false} listTitle ={routesDasboard} />
 
                 {/* content */}
                 <Header >

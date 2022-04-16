@@ -4,7 +4,7 @@ import { Link, Redirect, useHistory } from 'react-router-dom'
 import './styles.scss'
 
 
-const ContentThietbiMoi = () => {
+const ContentCapNhatThietbi = () => {
     const { Option } = Select
   
     const listDV = [
@@ -35,26 +35,28 @@ const ContentThietbiMoi = () => {
     }
 
     return (
-        <div className="ContentThietbiMoi">
+        <div className="ContentCapNhatThietbi">
 
-            <div className="ContentThietbiMoi-Form">
+            <div className="ContentCapNhatThietbi-Form">
                 <h2>Thông tin thiết bị</h2>
-                <div className="ContentThietbiMoi-Form_Input">
+                <div className="ContentCapNhatThietbi-Form_Input">
 
                     <Form
                         layout="vertical"
-                        className='ContentThietbiMoi-Form_InputLeft'
+                        className='ContentCapNhatThietbi-Form_InputLeft'
                         onChange={onChange}
                     >
                         <Form.Item
                             label="Mã thiết bị:"
                             name="maTB"
+                           initialValue={"KIO_01"}
                         >
 
                             <Input
                                 type="text"
                                 name="maTB"
                                 placeholder='Nhập mã thiết bị'
+                               
                             />
 
                         </Form.Item>
@@ -62,6 +64,7 @@ const ContentThietbiMoi = () => {
                         <Form.Item
                             label="Tên thiết bị:"
                             name="nameTB"
+                            initialValue={"Kiosk"}
                         >
                             <Input
                                 type="text"
@@ -72,6 +75,7 @@ const ContentThietbiMoi = () => {
                         <Form.Item
                             label="Địa chỉ IP:"
                             name="diachiIP"
+                            initialValue={"128.172.308"}
                         >
                             <Input
                                 type="text"
@@ -84,19 +88,17 @@ const ContentThietbiMoi = () => {
 
                     <Form
                         layout="vertical"
-                        className='ContentThietbiMoi-Form_InputRight'
+                        className='ContentCapNhatThietbi-Form_InputRight'
                         onChange={onChange}
                     >
                         <Form.Item
                             label="Chọn loại thiết bị:"
-
-
                         >
                             <Select
                                 style={{ width: 540 }}
                                 bordered={false}
                                 placeholder="Chọn loại thiết bị"
-
+                                defaultValue={"kiosk"}
                             >
                                 <Option value="kiosk">Kiosk</Option>
                                 <Option value="hethong">Display counter</Option>
@@ -105,6 +107,7 @@ const ContentThietbiMoi = () => {
                         <Form.Item
                             label="Tên đăng nhập:"
                             name="username"
+                            initialValue={"Linhkyo01"}
                         >
                             <Input type="text"
                                 name="username"
@@ -114,6 +117,7 @@ const ContentThietbiMoi = () => {
                         <Form.Item
                             label="Mật khẩu"
                             name="password"
+                            initialValue={"CMS"}
 
                         >
                             <Input
@@ -127,7 +131,7 @@ const ContentThietbiMoi = () => {
                     </Form>
                 </div>
 
-                <div className="ContentThietbiMoi-Form_SelectDV">
+                <div className="ContentCapNhatThietbi-Form_SelectDV">
                     <Form
                         layout="vertical"
                     >
@@ -139,6 +143,7 @@ const ContentThietbiMoi = () => {
                                 allowClear
                                 style={{ width: '1104px' }}
                                 placeholder="Nhập dịch vụ sử dụng"
+                                defaultValue={listDV}
                             >
                                 {optionSelect}
                             </Select>
@@ -148,7 +153,7 @@ const ContentThietbiMoi = () => {
                 </div>
             </div>
 
-            <div className='ContentThietbiMoi-btn-group'>
+            <div className='ContentCapNhatThietbi-btn-group'>
                 <Button 
                 type="primary" 
                 className="btn-cancel" >
@@ -161,8 +166,8 @@ const ContentThietbiMoi = () => {
                     htmlType="submit"
                     className="btn-continue"
                 >
-                    <Link to ={'/thietbi/chitiet'}>
-                    Thêm thiết bị
+                    <Link to ={'/thietbi'}>
+                        Cập nhật
                     </Link>
                    
                 </Button>
@@ -175,4 +180,4 @@ const ContentThietbiMoi = () => {
     )
 }
 
-export default ContentThietbiMoi
+export default ContentCapNhatThietbi

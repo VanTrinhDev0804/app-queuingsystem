@@ -1,49 +1,61 @@
 import React, { useState } from 'react'
 import { Layout, Button, Select } from 'antd'
-import TableCapSo from './tableThietbi'
-import ControllCapSo from './controll'
+import ContentCapSoMoi from './thietbimoi'
+import TableThietbi from './tableThietbi'
+import ControllThietbi from './controll'
+
+import ContentThietbiMoi from './thietbimoi'
 import { Link } from 'react-router-dom'
+import { IControlPage } from 'types'
+import ContentThietbiChiTiet from './chitiet'
 
 
 import './styles.scss'
-import ContentCapSoMoi from './thietbimoi'
+import ContentCapNhatThietbi from './capnhat'
 
-
-
-const ContentThietbi = () => {
-
-    const [showThietbi, SetshowThietbi] = useState(false)
+const ContentThietbi: React.FC<IControlPage> = (props) => {
+    
     const { Content } = Layout
+    
+    const pathBtn = props.controller ==='chitiet' ? '/thietbi/capnhat':'/thietbi/themthietbi' 
+    const nameBtn = props.controller ==='chitiet' ?  'Cập nhật thiết bị': 'Thêm thiết bị' 
 
-    const showCapSoMoi = () => {
-        SetshowThietbi(true)
-    }
+
     return (
         <Content>
             {
-                showThietbi ? "" : 
-                <div className="btn-ThietbiNew"
-                    onClick={showCapSoMoi}>
-                    <div className="btn-ThietbiNew-content">
-                        <img src={require('../../../assets/icon/capso/add.png')} />
-                        <p>Thêm thiết bị</p>
+                props.controller === 'themthietbi' || props.controller === 'capnhat' ? "" :
+                    <div className="btn-ThietbiNew">
+                        <Link to={`${pathBtn}`}>
+                            <div className="btn-ThietbiNew-content">
+                                <img src={require('../../../assets/icon/capso/add.png')} />
+                                <p>{nameBtn}</p>
+                            </div>
+                        </Link>
+
                     </div>
-                </div>
             }
 
-            {showThietbi ? <ContentCapSoMoi /> :
-                <>
+            {props.controller === 'themthietbi' ? <ContentThietbiMoi /> :
+                props.controller === 'chitiet' ? <ContentThietbiChiTiet /> :
+                props.controller === 'capnhat' ? <ContentCapNhatThietbi /> :
+                    <>
 
-                    <div className="ContentCapso">
-                        {/* {controller} */}
-                        <ControllCapSo />
-                        {/* Table */}
-                        <TableCapSo />
-                    </div>
-                </>
+                        <div className="ContentCapso">
+                            {/* {controller} */}
+                            <ControllThietbi />
+                            {/* Table */}
+                            <TableThietbi />
+                        </div>
+                    </>
+
+
+
 
 
             }
+
+
 
 
 
@@ -55,5 +67,7 @@ const ContentThietbi = () => {
         </Content>
     )
 }
+
+
 
 export default ContentThietbi

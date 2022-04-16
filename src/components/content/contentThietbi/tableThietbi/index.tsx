@@ -3,77 +3,160 @@ import { Table } from 'antd'
 
 import './styles.scss'
 
-
-function randomIntFromInterval(min: number, max: number) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-
-
-
-const TableCapSo = () => {
+const TableThietbi = () => {
     const data = [];
     for (let i = 1; i <= 100; i++) {
         data.push({
             key: i,
-            stt: randomIntFromInterval(20000, 30000),
-            name: 'Lê Quỳnh Ái Vân',
-            dichvu: `khám tim mạch`,
-            day: `25-12-2021`,
-            date: '1-2-2022',
-            status: 'Đang chờ ',
-            sourch: 'Kiosk',
-            action: '/chitiet',
+            maTB: 'KIO_01',
+            nameTB: 'Kiosk',
+            diachiIP: '192.168.1.10',
+            active: true,
+            connect: false,
+            dichvu: 'Khám tim mạch ,Khám mắt mũi họng',
+            description: '/thietbi/chitiet',
+            update: '/thietbi/update',
         });
     }
 
     const columns = [
         {
-          title: 'STT',
-          dataIndex: 'stt',
-          key: 'stt',
+            title: 'Mã thiết bị',
+            dataIndex: 'maTB',
+            key: 'maTB',
         },
         {
-          title: 'Tên Khách Hàng',
-          dataIndex: 'name',
-          key: 'name',
+            title: 'Tên thiết bị',
+            dataIndex: 'nameTB',
+            key: 'name',
         },
         {
-          title: 'Dịch vụ',
-          dataIndex: 'dichvu',
-          key: 'dichvu',
+            title: 'Địa chỉ IP',
+            dataIndex: 'diachiIP',
+            key: 'diachiIP',
         },
         {
-            title: 'Thời gian cấp',
-            dataIndex: 'day',
-          },
-          {
-            title: 'Hạn sử dụng',
-            dataIndex: 'date',
-           
-          },
-          {
-            title: 'Tình trạng',
-            dataIndex: 'status',
-            
-          },
-          {
-            title: 'Nguồn cấp',
-            dataIndex: 'sourch',
-            
-          },
-          {
-            title: '',
-            dataIndex: 'action',
-            render: ()=>(
-                <a>Chi tiết</a>
+            title: 'Trạng thái hoạt động',
+            dataIndex: 'active',
+            render: (checkSatus: boolean) => (
+                <>
+                    {
+                        checkSatus ?
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <img src={require('../../../../assets/icon/circlegreen.png')} />
+                                <span style={{ marginLeft: '8px' }}>
+                                    Hoạt động
+                                </span>
+                            </div>
+                            :
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <img src={require('../../../../assets/icon/circlered.png')} />
+                                <p style={{ marginLeft: '8px' }}>
+                                    Ngưng hoạt động
+                                </p>
+                            </div>
+                    }
+                </>
             )
-          },
-          
-      ];
+        },
+        {
+            title: 'Trạng thái kết nối',
+            dataIndex: 'connect',
+            render: (checkSatus: boolean) => (
+                <>
+                {
+                    checkSatus ?
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <img src={require('../../../../assets/icon/circlegreen.png')} />
+                            <span style={{ marginLeft: '8px' }}>
+                                Kết nối
+                            </span>
+                        </div>
+                        :
+                        <div
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}
+                        >
+                            <img src={require('../../../../assets/icon/circlered.png')} />
+                            <p style={{ marginLeft: '8px' }}>
+                                Mất kết nối
+                            </p>
+                        </div>
+                }
+            </>
+            )
+        },
+        {
+            title: 'Dịch vụ sử dụng',
+            dataIndex: 'dichvu',
+            render: (text: string) => (
+                <div>
+                    <div style={{
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        width: '178px',
+                        textOverflow: 'ellipsis'
+                    }}>
+
+                        {`${text}`}
+                    </div>
+                    <a>
+                        Xem thêm
+                    </a>
+                </div >
+
+            )
+
+        },
+
+        {
+            title: '',
+            dataIndex: 'description',
+            render: () => (
+                <a
+                    style={{
+                        whiteSpace: 'nowrap'
+                    }}
+                >Chi tiết</a>
+            )
+        },
+        {
+            title: '',
+            dataIndex: 'update',
+            render: () => (
+                <a
+                    style={{
+                        whiteSpace: 'nowrap'
+                    }}
+                >Cập nhật</a>
+            )
+        },
+
+    ];
 
     return (
-        <div className="ContentCapso-Table">
+        <div className="ContentThietbi-Table">
 
             <Table
                 dataSource={data}
@@ -82,4 +165,4 @@ const TableCapSo = () => {
     )
 }
 
-export default TableCapSo
+export default TableThietbi

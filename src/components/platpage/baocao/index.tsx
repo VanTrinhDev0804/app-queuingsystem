@@ -3,16 +3,17 @@ import { Layout } from 'antd';
 import './styles.scss'
 import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
+import { routesBaocao } from './routes';
 
 
 
 const BaocaoComponent = () => {
   return (
-    <Layout >
+    <Layout className='Baocao'>
       <MenuSider />
       <Layout>
         {/* Header */}
-        <HeaderPages  title='Báo cáo'/>
+        <HeaderPages listTitle={routesBaocao}/>
 
         {/* content */}
 

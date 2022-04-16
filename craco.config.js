@@ -14,11 +14,13 @@ module.exports = {
               '@menu-item-active-bg': '#FF7506',
               '@menu-item-font-size': 'Nunito',
               '@layout-header-background': '#FFFFF',
-              '@layout-sider-background': '#FFFFF'
+              '@layout-sider-background': '#FFFFF',
+              '@select-item-selected-color': '#282739',
+              '@select-item-selected-font-weight': '400'
             },
             javascriptEnabled: true,
           },
-        },
+        },  
       },
     },
   ],

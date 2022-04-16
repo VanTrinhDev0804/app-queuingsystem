@@ -5,22 +5,25 @@ import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
 import ContentCapso from 'components/content/contentCapso';
 import TitleDefault from 'components/titledefault';
-
+import { useParams } from 'react-router-dom';
+import { IBread, IParams } from 'types';
+import { routesCapso } from './routes';
 
 
 const CapsoComponent = () => {
+  const {  control }: IParams = useParams();
 
   return (
-    <Layout >
+    <Layout className='Capso' >
       <MenuSider />
       <Layout>
         {/* Header */}
-        <HeaderPages title='Cấp số' />
+        <HeaderPages listTitle={routesCapso} />
 
         {/* content */}
-        <TitleDefault text="Quản lý cấp số"/>
-       
-        <ContentCapso />
+        <TitleDefault text="Quản lý cấp số" />
+
+        <ContentCapso controller={`${control}`} />
 
       </Layout>
     </Layout>

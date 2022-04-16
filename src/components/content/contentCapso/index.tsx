@@ -2,36 +2,34 @@ import React, { useState } from 'react'
 import { Layout, Button, Select } from 'antd'
 import TableCapSo from './tableCapso'
 import ControllCapSo from './controll'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import ContentCapSoMoi from './capsomoi'
+import { IControlPage, IParams } from 'types'
+
 
 
 import './styles.scss'
-import ContentCapSoMoi from './capsomoi'
 
-
-
-const ContentCapso = () => {
-
-    const [showCSM, SetshowCMS] = useState(false)
+const ContentCapso :React.FC<IControlPage> = ( props) => {
     const { Content } = Layout
 
-    const showCapSoMoi = () => {
-        SetshowCMS(true)
-    }
+
     return (
         <Content>
             {
-                showCSM ? "" : 
-                <div className="btn-CapsoNew"
-                    onClick={showCapSoMoi}>
-                    <div className="btn-CapsoNew-content">
-                        <img src={require('../../../assets/icon/capso/add.png')} />
-                        <p>Cấp số mới</p>
+                props.controller === 'capsomoi' ? "" :
+                    <div className="btn-CapsoNew">
+                        <Link to={'/capso/capsomoi'}>
+                            <div className="btn-CapsoNew-content">
+                                <img src={require('../../../assets/icon/capso/add.png')} />
+                                <p>Cấp số mới</p>
+                            </div>
+                        </Link>
+
                     </div>
-                </div>
             }
 
-            {showCSM ? <ContentCapSoMoi /> :
+            { props.controller === 'capsomoi' ? <ContentCapSoMoi /> :
                 <>
 
                     <div className="ContentCapso">

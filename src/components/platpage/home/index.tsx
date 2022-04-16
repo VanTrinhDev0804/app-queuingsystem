@@ -4,6 +4,7 @@ import './styles.scss'
 import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
 import FormProfile from '../../profile';
+import { routesHome } from './routes';
 
 
 
@@ -13,7 +14,7 @@ const HomeComponent = () => {
       <MenuSider />
       <Layout>
         {/* Header */}
-        <HeaderPages/>
+        <HeaderPages listTitle={routesHome}/>
 
         {/* content */}
 
