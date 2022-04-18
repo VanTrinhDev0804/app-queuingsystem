@@ -31,7 +31,6 @@ const PageRender = () => {
     const { page, control } : IParams = useParams();
 
     let name = '';
-    console.log(name)
     if (page) {
         name = `${page}`;
     }

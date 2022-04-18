@@ -16,29 +16,49 @@ import ContentCapNhatThietbi from './capnhat'
 const ContentDichvu: React.FC<IControlPage> = (props) => {
 
     const { Content } = Layout
-
-    const pathBtn = props.controller === 'chitiet' ? '/dichvu/capnhat' : '/dichvu/themdichvu'
-    const nameBtn = props.controller === 'chitiet' ? 'Cập nhật thiết bị' : 'Thêm dịch vụ'
+    const { controller } = props
+    const pathBtn = controller === 'chitiet' ? '/dichvu/capnhat' : '/dichvu/themdichvu'
+    const nameBtn = controller === 'chitiet' ? 'Cập nhật dịch vụ' : 'Thêm dịch vụ'
 
 
     return (
         <Content>
             {
-                props.controller === 'themdichvu' || props.controller === 'capnhat' ? "" :
-                    <div className="btn-ThietbiNew">
-                        <Link to={`${pathBtn}`}>
-                            <div className="btn-ThietbiNew-content">
-                                <img src={require('../../../assets/icon/capso/add.png')} />
-                                <p>{nameBtn}</p>
-                            </div>
-                        </Link>
+                controller === 'themdichvu' || controller === 'capnhat' ? "" :
+                    <div className="btngroup">
+                        <div className="btn-Dichvu">
+                            <Link to={`${pathBtn}`}>
+                                <div className="btn-Dichvu-content">
+                                    <img src={require('../../../assets/icon/capso/add.png')} />
+                                    <p>{nameBtn}</p>
+                                </div>
+                            </Link>
+
+                        </div>
+                        {
+                            controller == 'chitiet' ?
+                                <div className="btn-Dichvu">
+                                    <Link to={'/dichvu'}>
+                                        <div className="btn-Dichvu-content">
+                                            <img src={require('../../../assets/icon/capso/back.png')} />
+                                            <p>Quay lại</p>
+                                        </div>
+                                    </Link>
+
+                                </div>
+                                : ""
+
+                        }
 
                     </div>
+
+
             }
 
-            {props.controller === 'themdichvu' ? <ContentThietbiMoi /> :
-                props.controller === 'chitiet' ? <ContentThietbiChiTiet /> :
-                    props.controller === 'capnhat' ? <ContentCapNhatThietbi /> :
+
+            {controller === 'themdichvu' ? <ContentThietbiMoi /> :
+                controller === 'chitiet' ? <ContentThietbiChiTiet /> :
+                    controller === 'capnhat' ? <ContentCapNhatThietbi /> :
                         <>
 
                             <div className="ContentCapso">

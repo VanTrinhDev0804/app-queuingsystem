@@ -16,7 +16,7 @@ const HomeComponent = () => {
         {/* Header */}
         <HeaderPages listTitle={routesHome}/>
 
-        {/* content */}
+        {/* content */} 
 
         <FormProfile />
       </Layout>

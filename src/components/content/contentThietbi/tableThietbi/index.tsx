@@ -2,6 +2,7 @@ import React from 'react'
 import { Table } from 'antd'
 
 import './styles.scss'
+import { Link } from 'react-router-dom';
 
 const TableThietbi = () => {
     const data = [];
@@ -15,7 +16,7 @@ const TableThietbi = () => {
             connect: false,
             dichvu: 'Khám tim mạch ,Khám mắt mũi họng',
             description: '/thietbi/chitiet',
-            update: '/thietbi/update',
+            update: '/thietbi/capnhat',
         });
     }
 
@@ -133,23 +134,23 @@ const TableThietbi = () => {
         {
             title: '',
             dataIndex: 'description',
-            render: () => (
-                <a
+            render: (link :string) => (
+                <Link to={link}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
-                >Chi tiết</a>
+                >Chi tiết</Link>
             )
         },
         {
             title: '',
             dataIndex: 'update',
-            render: () => (
-                <a
+            render: (link :string) => (
+                <Link to={link}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
-                >Cập nhật</a>
+                >Cập nhật</Link>
             )
         },
 

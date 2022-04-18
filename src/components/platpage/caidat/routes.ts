@@ -12,7 +12,7 @@ export const routesCaidat=[
       },    
       {
         titleBread: "Thêm vai trò",
-        path: "/caidat-hethong/themthietbi"
+        path: "/caidat-hethong/themvaitro"
       },    
       {
         titleBread: "Cập nhật vai trò",

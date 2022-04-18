@@ -2,10 +2,10 @@
 import React from 'react'
 import CaidatComponent from 'components/platpage/caidat'
 
-const Caidat = () => {
+const CaidatHistory = () => {
   return (
     <CaidatComponent/>
   )
 }
 
-export default Caidat
+export default CaidatHistory

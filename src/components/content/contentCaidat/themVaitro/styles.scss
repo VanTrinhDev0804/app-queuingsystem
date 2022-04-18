@@ -2,7 +2,7 @@
 @import '../../../../assets/styles/mixins';
 
 
-.ContentThemDichvu {
+.ContentThemVaitro {
     width: 1192px;
     height: 604px;
     margin-left: 24px;
@@ -28,6 +28,19 @@
         box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
         border-radius: 16px;
 
+        label {
+
+            height: 24px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #282739;
+            white-space: normal;
+
+        }
+
         &_Input {
             display: flex;
 
@@ -37,6 +50,53 @@
             &Left,
             &Right {
                 margin-left: 24px;
+
+                &-ListNhomChuNang {
+                    width: 550px;
+                    height: 420px;
+                    background: #FFF2E7;
+                    border-radius: 8px;
+                    overflow-y: scroll;
+                    &::-webkit-scrollbar {
+                        width: 4px;
+                        height: 85px;
+                    }
+            
+                    &::-webkit-scrollbar-thumb {
+                        /* color of the scroll thumb */
+                        border-radius: 43px;
+                        background-color: #FFC89B;
+                        /* roundness of the scroll thumb */
+                        // border: 3px solid orange;  /* creates padding around scroll thumb */
+                    }
+                    &-item { margin-left: 24px;}
+                }
+
+                &-GroupCheckBox {
+
+                    .ant-checkbox-group {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .ant-checkbox-wrapper {
+                        margin: 0 6px;
+                    }
+
+                    display: flex;
+
+                    label {
+
+                        font-family: 'Nunito';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                    
+                        color: #535261;
+
+                    }
+                }
             }
         }
 
@@ -64,18 +124,7 @@
 
         }
 
-        label {
 
-            height: 24px;
-            font-family: 'Nunito';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
-            color: #282739;
-            white-space: normal;
-
-        }
 
         .text-notify-role::before,
         .ant-form-item-label>label::after {
@@ -95,64 +144,19 @@
             padding: 10px 270px 10px 12px;
         }
 
-        &_roleCapso {
-            margin-left: 24px;
-
-            h3 {
-                font-family: 'Nunito';
-                font-style: normal;
-                font-weight: 700;
-                font-size: 20px;
-                line-height: 30px;
-                color: #FF7506;
-
-            }
-
-            .ant-checkbox-group {
-                display: flex;
-                flex-direction: column;
-
-                .ant-checkbox-wrapper {
-                    margin: 16px 0px;
-                }
-                .number {
-                    padding: 10px 10px;
-                    width: 61px;
-                    height: 44px;
-                    background-color: #FFFFFF;
-                    border: 1.5px solid #D4D4D7;
-                    box-sizing: border-box;
-                    border-radius: 8px;
-                    font-family: 'Nunito';
-                    font-style: normal;
-                    font-weight: 400;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: #535261;
-                    margin: 0 8px   ;
-
-
-                
-                }
-               .space{
-                   margin-left: 80px;
-               }
-            }
-
-            p {
-                font-family: 'Nunito';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 21px;
-                display: flex;
-                align-items: center;
-                color: #7E7D88
-            }
-
-        }
+    
     }
 
+    .text-notify-role{
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        display: flex;
+        align-items: center;
+        color: #7E7D88
+    }
 
     &-btn-group {
         width: 1152px;

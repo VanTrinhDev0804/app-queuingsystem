@@ -59,9 +59,9 @@ const tableDichvu = () => {
                                 }}
                             >
                                 <img src={require('../../../../assets/icon/circlered.png')} />
-                                <p style={{ marginLeft: '8px' }}>
+                                <span style={{ marginLeft: '8px' }}>
                                     Ngưng hoạt động
-                                </p>
+                                </span>
                             </div>
                     }
                 </>
@@ -83,11 +83,11 @@ const tableDichvu = () => {
             title: '',
             dataIndex: 'update',
             render: () => (
-                <a
+                <Link to={'dichvu/capnhat'}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
-                >Cập nhật</a>
+                >Cập nhật</Link>
             )
         },
 

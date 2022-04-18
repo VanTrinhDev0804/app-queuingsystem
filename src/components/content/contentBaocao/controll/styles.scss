@@ -1,0 +1,33 @@
+@import '../../../../assets//styles/variables';
+@import '../../../../assets/styles/mixins';
+
+.ContentBaocao-control {
+
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+
+    .labelSelecpxt {
+        width: 83px;
+        height: 24px;
+
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #282739;
+        white-space: nowrap;
+    }
+
+    .ant-picker {
+        background: #FFFFFF;
+        /* gray blue/gray 2 - stroke */
+
+        border: 1.5px solid #D4D4D7;
+        box-sizing: border-box;
+        border-radius: 8px;
+
+    }
+
+}

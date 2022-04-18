@@ -4,10 +4,15 @@ import './styles.scss'
 import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
 import { routesBaocao } from './routes';
+import ContentBaocao from 'components/content/contentBaocao';
+import { useParams } from 'react-router-dom';
+import { IParams } from 'types';
 
 
 
 const BaocaoComponent = () => {
+  const {control} :IParams = useParams();
+
   return (
     <Layout className='Baocao'>
       <MenuSider />
@@ -16,7 +21,7 @@ const BaocaoComponent = () => {
         <HeaderPages listTitle={routesBaocao}/>
 
         {/* content */}
-
+        <ContentBaocao controller={`${control}`} />
   
       </Layout>
     </Layout>

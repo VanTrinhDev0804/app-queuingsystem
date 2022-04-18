@@ -121,10 +121,8 @@ const ContentThemDichvu = () => {
                     htmlType="submit"
                     className="btn-continue"
                 >
-                    <Link to={'/thietbi/chitiet'}>
-                        Thêm dịch vụ
-                    </Link>
-
+                    
+                    Thêm dịch vụ
                 </Button>
 
 
