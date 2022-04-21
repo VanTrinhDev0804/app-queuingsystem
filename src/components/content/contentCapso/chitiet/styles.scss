@@ -1,0 +1,78 @@
+@import '../../../../assets//styles/variables';
+@import '../../../../assets/styles/mixins';
+
+
+.ContentCapsoChitiet {
+    width: 1192px;
+    height: 604px;
+    margin-left: 24px;
+
+    .ContentCapsoChitiet-content {
+        width: 1112px;
+        height: 604px;
+        left: 224px;
+        top: 156px;
+        background-color: #FFFFFF;
+        box-shadow: 2px 2px 8px rgba(232, 239, 244, 0.8);
+        border-radius: 16px;
+
+        h2 {
+
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            color: #FF7506;
+            margin-left: 24px;
+            padding-top: 16px;
+        }
+
+
+        &_description {
+            display: flex;
+            justify-content: space-between;
+            margin: 0px 24px;
+
+            &-listRight,
+            &-listLeft {
+                width: 50%;
+
+                &_item {
+                    display: flex;
+
+
+                }
+            }
+        }
+        .item-Status{
+            align-items: flex-start;
+            
+        }
+        .lable {
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            color: #282739;
+            margin-right: 42px;
+        }
+
+        .value {
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            display: flex;
+            align-items: center;
+            color: #535261;
+        }
+    }
+
+
+
+}

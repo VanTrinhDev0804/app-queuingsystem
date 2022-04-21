@@ -5,6 +5,7 @@ import { Interface } from "readline"
 export interface IParams {
     page ?: string
     control? : string 
+    id? : string 
 }
 
 // custom title for content
@@ -43,15 +44,15 @@ export interface IControlPage{
 
 
 export interface ItemTBCapso{
-  key: number
-  stt: number
-  name: string
-  dichvu: string
-  day: string
-  date:string
-  status : string
-  sourch: string
-  action: string
+  key?: number
+  stt?: number
+  name?: string
+  dichvu?: string
+  day?: string
+  date?:string
+  status? : number
+  source?: string
+  action?: string
 }
 export interface ItemTBCaiDat{
   key : number

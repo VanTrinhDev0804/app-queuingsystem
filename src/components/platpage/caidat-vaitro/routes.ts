@@ -4,19 +4,19 @@ import { IBread } from "types";
 export const routesCaidat=[
     {
         titleBread: "Cài đặt hệ thống",
-        path: "/caidat-hethong"
+        path: "/caidat-vaitro"
       },
       {
         titleBread: "Quản lý vai trò",
-        path: "/caidat-hethong"  
+        path: "/caidat-vaitro"  
       },    
       {
         titleBread: "Thêm vai trò",
-        path: "/caidat-hethong/themvaitro"
+        path: "/caidat-vaitro/themvaitro"
       },    
       {
         titleBread: "Cập nhật vai trò",
-        path: "/caidat-hethong/capnhat"
+        path: "/caidat-vaitro/capnhat"
       },    
 ]
 

@@ -1,85 +1,120 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Table } from 'antd'
-
+import { Link } from 'react-router-dom'
 import './styles.scss'
+import { CapsoState } from 'redux/slice/CapsoSlice'
 
 
-function randomIntFromInterval(min: number, max: number) { // min and max included 
-    return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-
-
-
-const TableCapSo = () => {
-    const data = [];
-    for (let i = 1; i <= 10; i++) {
-        data.push({
-            key: i,
-            stt: randomIntFromInterval(20000, 30000),
-            name: 'Lê Quỳnh Ái Vân',
-            dichvu: `khám tim mạch`,
-            day: `25-12-2021`,
-            date: '1-2-2022',
-            status: 'Đang chờ ',
-            sourch: 'Kiosk',
-            action: '/chitiet',
-        });
-    }
-
+const TableCapSo: React.FC<CapsoState> = (props) => {
+    const { data } = props
     const columns = [
         {
-          title: 'STT',
-          dataIndex: 'stt',
-          key: 'stt',
+            title: 'STT',
+            dataIndex: 'stt',
+            key: 'stt',
         },
         {
-          title: 'Tên Khách Hàng',
-          dataIndex: 'name',
-          key: 'name',
+            title: 'Tên Khách Hàng',
+            dataIndex: 'name',
+            key: 'name',
         },
         {
-          title: 'Dịch vụ',
-          dataIndex: 'dichvu',
-          key: 'dichvu',
+            title: 'Dịch vụ',
+            dataIndex: 'dichvu',
+            key: 'dichvu',
         },
         {
             title: 'Thời gian cấp',
             dataIndex: 'day',
-          },
-          {
+            key: 'day'
+        },
+        {
             title: 'Hạn sử dụng',
             dataIndex: 'date',
-           
-          },
-          {
-            title: 'Tình trạng',
+            key: 'date'
+
+        },
+        {
+            title: 'Trạng thái ',
             dataIndex: 'status',
-            
-          },
-          {
+            key: 'status',
+            render: (checkSatus: number) => (
+                <   >
+                    {
+                        checkSatus === 0 ?
+                            <div key={checkSatus}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'flex-start'
+                                }}
+                            >
+                                <img src={require('../../../../assets/icon/circlenoactive.png')} />
+                                <span style={{ marginLeft: '8px' }}>
+                                    Đã sử dụng
+                                </span>
+                            </div>
+                            :
+                            checkSatus === 1 ?
+                                <div key={checkSatus}
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start'
+                                    }}
+                                >
+                                    <img src={require('../../../../assets/icon/circleblue.png')} />
+                                    <span style={{ marginLeft: '8px' }}>
+                                        Đang chờ
+                                    </span>
+                                </div>
+                                :
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'flex-start'
+                                    }}
+                                >
+                                    <img src={require('../../../../assets/icon/circlered.png')} />
+                                    <span style={{ marginLeft: '8px' }}>
+                                        Đã bỏ qua
+                                    </span>
+                                </div>
+
+                    }
+                </>
+            )
+        },
+        {
             title: 'Nguồn cấp',
-            dataIndex: 'sourch',
-            
-          },
-          {
+            dataIndex: 'source',
+            key: 'source'
+        },
+        {
             title: '',
             dataIndex: 'action',
-            render: ()=>(
-                <a>Chi tiết</a>
+            key: 'action',
+            render: (link: string, record: any) => (
+                <Link to={
+                    `${link}/${record.key}`
+                }>Chi tiết</Link>
             )
-          },
-          
-      ];
+        },
+
+    ];
 
     return (
-        <div className="ContentCapso-Table">
+        <div className="Content-Table">
 
             <Table
                 dataSource={data}
                 columns={columns} />
         </div>
     )
+}
+TableCapSo.defaultProps = {
+    data: []
 }
 
 export default TableCapSo

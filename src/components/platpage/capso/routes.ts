@@ -14,6 +14,10 @@ export const routesCapso=[
         titleBread: "Cấp số mới",
         path: "/capso/capsomoi"
       },    
+      {
+        titleBread: "Chi tiết",
+        path: "/capso/chitiet"
+      },  
      
 ]
 

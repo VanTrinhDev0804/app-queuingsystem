@@ -19,3 +19,114 @@
         border-color: $primaryColor;
     }
 }
+
+@mixin  tableDefault {
+    .Content-Table {
+        width: 1112px;
+    
+        margin-left: 24px;
+        margin-top: 16px;
+        filter: drop-shadow(2px 2px 8px rgba(232, 239, 244, 0.8));
+        border-radius: 12px;
+    
+        // scss table
+        .ant-table {
+            border-radius: 12px !important;
+            overflow: hidden;
+            width: 1112px;
+            height: 490px;
+        }
+    
+        .ant-table-thead>tr>th {
+            background-color: #FF9138;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #FFFFFF;
+            white-space: nowrap;
+            padding: 0px 17px;
+            width: 93px;
+            height: 49px;
+        }
+    
+        .ant-table-tbody>tr>td {
+            width: 162px;
+            height: 49px;
+            padding: 0px 17px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #535261;
+            white-space: nowrap;
+    
+        }
+        tr:nth-child(odd){ 
+            background: $whiteColor;
+        }
+        tr:nth-child(even){
+            background: #FFF2E7;
+        }
+        .ant-table-cell{
+            a{
+                color: #4277FF;
+                text-decoration: underline;
+            }
+        }
+    
+    }
+}
+
+@mixin controllDefault {
+    .labelSelecpxt {
+        width: 83px;
+        height: 24px;
+
+        font-family: 'Nunito';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 24px;
+        color: #282739;
+        white-space: nowrap;
+    }
+
+    .ant-select {
+        background: #FFFFFF;
+        border: 1.5px solid #D4D4D7;
+        box-sizing: border-box;
+        border-radius: 8px;
+
+    }
+
+    .ant-picker {
+        background: #FFFFFF;
+        /* gray blue/gray 2 - stroke */
+
+        border: 1.5px solid #D4D4D7;
+        box-sizing: border-box;
+        border-radius: 8px;
+
+    }
+
+    .ant-input-group {
+        background: #FFFFFF;
+        /* Gray/$-gray-100 */
+
+        border: 1.5px solid #D4D4D7;
+        box-sizing: border-box;
+        border-radius: 8px;
+    }
+
+    .ant-input-search-button {
+        border: none;
+
+        .anticon-search {
+            color: $primaryColor;
+        }
+    }
+
+}

@@ -1,10 +1,10 @@
 
 import React from 'react'
-import CaidatComponent from 'components/platpage/caidat'
+import CaidatUserComponent from 'components/platpage/caidat-user'
 
 const CaidatUser = () => {
   return (
-    <CaidatComponent/>
+    <CaidatUserComponent/>
   )
 }
 

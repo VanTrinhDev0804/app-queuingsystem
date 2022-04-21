@@ -48,7 +48,7 @@ const MenuSider = () => {
                     <SubMenu key="/caidat-hethong" 
                    icon={<img src={require('../../assets/icon/menu/iconCaiDat.png')} />}
                     title="Cài đặt hệ thống">
-                        <Menu.Item key="/caidat-hethong">Quản lý vai trò</Menu.Item>
+                        <Menu.Item key="/caidat-vaitro">Quản lý vai trò</Menu.Item>
                         <Menu.Item key="/caidat-user">Quản lý tài khoản</Menu.Item>
                         <Menu.Item key="/caidat-history">Nhật ký người dùng</Menu.Item>
        

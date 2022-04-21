@@ -28,13 +28,14 @@ const generatePage = (name: string) => {
 }
 
 const PageRender = () => {
-    const { page, control } : IParams = useParams();
+    const { page, control, id } : IParams = useParams();
 
     let name = '';
     if (page) {
         name = `${page}`;
     }
    
+    console.log(id)
     return generatePage(name)
     
 

@@ -5,13 +5,13 @@ import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
 import { routesCaidat } from './routes';
 import TitleDefault from 'components/titledefault';
-import ContentCaidat from 'components/content/contentCaidat';
 import { useParams } from 'react-router-dom';
 import { IParams } from 'types';
+import ContentCaidatVaitro from 'components/content/contentCaidatVaitro';
 
 
 
-const CaidatComponent = () => {
+const CaidatVaitroComponent = () => {
 
   const {control}: IParams = useParams() 
   return (
@@ -24,10 +24,10 @@ const CaidatComponent = () => {
 
         <TitleDefault text="Danh sách vai trò" />
         {/* content */}
-        <ContentCaidat controller={`${control}`}/>
+        <ContentCaidatVaitro controller={`${control}`}/>
       </Layout>
     </Layout>
   )
 }
 
-export default CaidatComponent
+export default CaidatVaitroComponent

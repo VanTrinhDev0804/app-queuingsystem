@@ -4,32 +4,45 @@ import { Table } from 'antd'
 import './styles.scss'
 import { Link } from 'react-router-dom';
 
-const tableDichvu = () => {
+const TableTaiKhoan= () => {
     const data = [];
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 10; i++) {
         data.push({
             key: i,
-            maDV: 'KIO_01',
-            tenDV: 'Kiosk',
-            describe: `Mô tả  ${i}`,
-            active: true,   
-            description: '/dichvu/chitiet',
-            update: '/dichvu/update',
+            userName: 'tuyetnguyen@12',
+            hoten: 'Nguyen Văn A',
+            phone: '0919256712',
+            email: 'tuyetnguyen123@gmail.com',
+            vaitro:'Kế toán',
+            active: true,
+            update:'/caidat-user/capnhat'
         });
     }
 
     const columns = [
         {
-            title: 'Mã dịch vụ',
-            dataIndex: 'maDV',
+            title: 'Tên đăng nhập',
+            dataIndex: 'userName',
+         
         },
         {
-            title: 'Tên dịch vụ',
-            dataIndex: 'tenDV',
+            title: 'Họ tên',
+            dataIndex: 'hoten',
         },
         {
-            title: 'Mô tả',
-            dataIndex: 'describe',
+            title: 'Số điện thoại',
+            dataIndex: 'phone',
+         
+        },
+        {
+            title: 'Email',
+            dataIndex: 'email',
+         
+        },
+        {
+            title: 'Vai trò',
+            dataIndex: 'vaitro',
+         
         },
         {
             title: 'Trạng thái hoạt động',
@@ -67,23 +80,11 @@ const tableDichvu = () => {
                 </>
             )
         },
-    
-        {
-            title: '',
-            dataIndex: 'description',
-            render: () => (
-                <Link to={'/dichvu/chitiet'}
-                    style={{
-                        whiteSpace: 'nowrap'
-                    }}
-                >Chi tiết</Link>
-            )
-        },
         {
             title: '',
             dataIndex: 'update',
-            render: () => (
-                <Link to={'dichvu/capnhat'}
+            render: (link : string) => (
+                <Link to={link}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
@@ -103,4 +104,4 @@ const tableDichvu = () => {
     )
 }
 
-export default tableDichvu
+export default TableTaiKhoan

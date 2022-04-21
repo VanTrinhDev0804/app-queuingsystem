@@ -107,7 +107,7 @@ const TableBaocao = () => {
     ];
 
     return (
-        <div className="ContentCapso-Table">
+        <div className="Content-Table">
 
             <Table
                 dataSource={data}

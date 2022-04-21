@@ -7,12 +7,13 @@ import ContentThemVaitro from './themVaitro'
 import TableVaitro from './tableVaitro'
 import ContentCapnhatVaitro from './capnhat'
 import './styles.scss'
+import ControllVaitro from './controll'
 
 
-const ContentCaidat: React.FC<IControlPage> = (props) => {
+const ContentCaidatVaitro: React.FC<IControlPage> = (props) => {
 
     const { Content } = Layout
-    const { controller } = props
+    const { controller } = props    
 
 
 
@@ -22,7 +23,7 @@ const ContentCaidat: React.FC<IControlPage> = (props) => {
             {
                 controller === 'themvaitro' || controller === 'capnhat' ? "" :
                     <div className="btn-ThietbiNew">
-                        <Link to="/caidat-hethong/themvaitro">
+                        <Link to="/caidat-vaitro/themvaitro">
                             <div className="btn-ThietbiNew-content">
                                 <img src={require('../../../assets/icon/capso/add.png')} />
                                 <p>Thêm vai trò</p>
@@ -38,7 +39,7 @@ const ContentCaidat: React.FC<IControlPage> = (props) => {
 
                             <div className="ContentCapso">
                                 {/* {controller} */}
-                                <ControllThietbi />
+                                <ControllVaitro />
                                 {/* Table */}
                                 <TableVaitro />
                             </div>
@@ -61,4 +62,4 @@ const ContentCaidat: React.FC<IControlPage> = (props) => {
 
 
 
-export default ContentCaidat
+export default ContentCaidatVaitro

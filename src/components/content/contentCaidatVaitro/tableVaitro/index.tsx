@@ -12,7 +12,7 @@ const TableVaitro = () => {
             tenVaitro: 'Kế toán',
             user: 6,
             description: 'Thực hiện nhiệm vụ về thống kê số liệu và tổng hợp số liệu',
-            update: '/caidat-hethong/capnhat',
+            update: '/caidat-vaitro/capnhat',
         });
     }
 

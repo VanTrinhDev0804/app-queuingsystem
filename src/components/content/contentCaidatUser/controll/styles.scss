@@ -1,25 +1,25 @@
 @import '../../../../assets//styles/variables';
 @import '../../../../assets/styles/mixins';
 
-.ContentCapso-control {
-
+.Content-control {
+    width: 1112px;
     display: flex;
     align-items: center;
     margin-left: 24px;
-
+    justify-content: space-between;
     @include controllDefault;
 
     // &-dichvu {}
 
     // &-status {}
-    &-status,
-    &-sourch {
+    &-connection {
         margin-left: 24px;
     }
 
-    &-date {
-        margin: 0 24px;
-    }
 
-    // &-search {}
+
+    &-search {
+        margin-left: 8px;
+
+    }
 }

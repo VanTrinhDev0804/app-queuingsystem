@@ -157,7 +157,7 @@ const TableThietbi = () => {
     ];
 
     return (
-        <div className="ContentThietbi-Table">
+        <div className="Content-Table">
 
             <Table
                 dataSource={data}

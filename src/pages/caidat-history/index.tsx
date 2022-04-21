@@ -1,10 +1,10 @@
 
 import React from 'react'
-import CaidatComponent from 'components/platpage/caidat'
+import CaidatHistoryComponent from 'components/platpage/caidat-history'
 
 const CaidatHistory = () => {
   return (
-    <CaidatComponent/>
+    <CaidatHistoryComponent/>
   )
 }
 
