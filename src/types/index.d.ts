@@ -40,9 +40,22 @@ export interface ItemCharts{
 export interface IControlPage{
     controller: string
 }
+// Thiết bị
 
+export interface ItemTBThietBi{
+  key?: number
+  maTB?: string
+  nameTB?: string
+  loaiTb?: string
+  diachiIP?: string
+  active?: boolean
+  connect?: boolean
+  dichvu?: Array<string>
+  description?:string
+  update?: string
+}
 
-
+// Cấp số 
 export interface ItemTBCapso{
   key?: number
   stt?: number
@@ -54,6 +67,8 @@ export interface ItemTBCapso{
   source?: string
   action?: string
 }
+
+
 export interface ItemTBCaiDat{
   key : number
   rolename: string

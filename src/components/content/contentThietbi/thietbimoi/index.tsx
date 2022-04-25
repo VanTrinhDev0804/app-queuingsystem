@@ -1,12 +1,28 @@
 import React, { useState } from 'react'
 import { Select, Button, Form, Input } from 'antd'
 import { Link, Redirect, useHistory } from 'react-router-dom'
+import { db } from '../../../../firebase/cofig'
+import { doc, setDoc } from 'firebase/firestore'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { addItemsTBThietbi } from 'redux/slice/ThietbiSlice'
+import { ItemTBThietBi } from 'types'
 import './styles.scss'
 
 
 const ContentThietbiMoi = () => {
+
+    const {data} = useAppSelector(state => state.thietbi)
+    const dispatch = useAppDispatch()
+    const [maTb, SetMaTb] = useState("");
+    const [tenTb, SetTenTb] = useState("");
+    const [dcIP, setDcIPP] = useState("");
+    const [dichvu, setDichvu] = useState({});
+    const [loaiTb, SetLoaiTb] = useState("");
+    const [userName, SetUserName] = useState("");
+    const [password, setPassword] = useState("")
+
     const { Option } = Select
-  
+
     const listDV = [
         'Khám tim mạch',
         'Khám sản phụ khoa',
@@ -17,22 +33,53 @@ const ContentThietbiMoi = () => {
     ]
     const optionSelect = listDV.map((text, key) => {
         return (
-            <Option key={key}>
+            <Option key={key} value={text}>
                 {text}
             </Option>
         )
     })
 
-   
-    const onChange = (e: any) => {
+    const onSelectDichVu = (value: object) => {
+        setDichvu({...value})
 
-        let name = e.target.name;
-        let value = e.target.value
-        let obj = {
-            [name]: value
-        }
-      
     }
+
+
+
+    const writeDataCapso = async (data : any, index : any) => {
+        await setDoc(doc(db, "Thietbi", `${index}`), data);
+    }
+                                                                                                                                                                    
+    const handleThemThietbi = () => {
+        
+    const lastKey = data ? data[data.length-1].key : 0
+    const newKey = lastKey ? lastKey + 1 : lastKey
+    console.log(newKey)
+    const dataInput: ItemTBThietBi = {
+        key: newKey,
+        maTB: maTb,
+        nameTB: tenTb,
+        loaiTb: loaiTb,
+        diachiIP: dcIP,
+        active: true,
+        connect: true,
+        dichvu:  Object.values(dichvu),
+        description: '/thietbi/chitiet',
+        update: '/thietbi/capnhat',
+    }
+        const isEmpty = Object.values(dataInput).includes('');
+        console.log(isEmpty)
+        if (!isEmpty) {
+            writeDataCapso(dataInput,newKey )
+            dispatch(addItemsTBThietbi(data?.concat(dataInput)))
+            alert("Thêm thiết bị thành công!")
+        }
+        else {
+            alert("Phải nhập đầy đủ thông tin thiết bị")
+        }
+
+    }
+
 
     return (
         <div className="ContentThietbiMoi">
@@ -44,7 +91,7 @@ const ContentThietbiMoi = () => {
                     <Form
                         layout="vertical"
                         className='ContentThietbiMoi-Form_InputLeft'
-                        onChange={onChange}
+
                     >
                         <Form.Item
                             label="Mã thiết bị:"
@@ -55,6 +102,8 @@ const ContentThietbiMoi = () => {
                                 type="text"
                                 name="maTB"
                                 placeholder='Nhập mã thiết bị'
+                                onChange={(e) => SetMaTb(e.target.value)}
+                                required
                             />
 
                         </Form.Item>
@@ -67,6 +116,8 @@ const ContentThietbiMoi = () => {
                                 type="text"
                                 name="nameTB"
                                 placeholder='Nhập tên thiết bị'
+                                onChange={(e) => SetTenTb(e.target.value)}
+                                required
                             />
                         </Form.Item>
                         <Form.Item
@@ -77,6 +128,8 @@ const ContentThietbiMoi = () => {
                                 type="text"
                                 name="diachiIP"
                                 placeholder='Nhập địa chỉ IP'
+                                onChange={(e) => setDcIPP(e.target.value)}
+                                required
                             />
                         </Form.Item>
 
@@ -85,18 +138,16 @@ const ContentThietbiMoi = () => {
                     <Form
                         layout="vertical"
                         className='ContentThietbiMoi-Form_InputRight'
-                        onChange={onChange}
+
                     >
                         <Form.Item
                             label="Chọn loại thiết bị:"
-
-
                         >
                             <Select
                                 style={{ width: 540 }}
                                 bordered={false}
                                 placeholder="Chọn loại thiết bị"
-
+                                onChange={(e) => SetLoaiTb(e)}
                             >
                                 <Option value="kiosk">Kiosk</Option>
                                 <Option value="hethong">Display counter</Option>
@@ -109,16 +160,22 @@ const ContentThietbiMoi = () => {
                             <Input type="text"
                                 name="username"
                                 placeholder='Nhập tên đăng nhập'
+                                required
+                                onChange={(e) => SetUserName(e.target.value)}
                             />
                         </Form.Item>
                         <Form.Item
                             label="Mật khẩu"
                             name="password"
 
+
+
                         >
                             <Input
                                 type="password"
                                 name="password"
+                                onChange={(e) => e.target.value}
+                                required
                                 placeholder='Nhập mật khẩu'
                             />
                         </Form.Item>
@@ -139,6 +196,7 @@ const ContentThietbiMoi = () => {
                                 allowClear
                                 style={{ width: '1104px' }}
                                 placeholder="Nhập dịch vụ sử dụng"
+                                onChange={onSelectDichVu}
                             >
                                 {optionSelect}
                             </Select>
@@ -149,22 +207,24 @@ const ContentThietbiMoi = () => {
             </div>
 
             <div className='ContentThietbiMoi-btn-group'>
-                <Button 
-                type="primary" 
-                className="btn-cancel" >
+                <Button
+                    type="primary"
+                    className="btn-cancel" >
+                    <Link to={'/thietbi'}>
+                        Hủy
+                    </Link>
 
-                    Hủy
 
                 </Button>
                 <Button
                     type="primary"
                     htmlType="submit"
                     className="btn-continue"
+                    onClick={handleThemThietbi}
                 >
-                    <Link to ={'/thietbi/chitiet'}>
                     Thêm thiết bị
-                    </Link>
-                   
+
+
                 </Button>
 
 

@@ -18,6 +18,7 @@ const ContentCapso: React.FC<IControlPage> = (props) => {
     const { controller } = props
 
     const { data } = useAppSelector(state => state.capso)
+
     const dispatch = useAppDispatch()
     const dataCollectionRef = collection(db, 'Capso');
     const result: any = []

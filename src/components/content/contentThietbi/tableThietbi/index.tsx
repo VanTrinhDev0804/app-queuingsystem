@@ -3,22 +3,10 @@ import { Table } from 'antd'
 
 import './styles.scss'
 import { Link } from 'react-router-dom';
+import { ThietbiState } from 'redux/slice/ThietbiSlice';
 
-const TableThietbi = () => {
-    const data = [];
-    for (let i = 1; i <= 100; i++) {
-        data.push({
-            key: i,
-            maTB: 'KIO_01',
-            nameTB: 'Kiosk',
-            diachiIP: '192.168.1.10',
-            active: true,
-            connect: false,
-            dichvu: 'Khám tim mạch ,Khám mắt mũi họng',
-            description: '/thietbi/chitiet',
-            update: '/thietbi/capnhat',
-        });
-    }
+const TableThietbi: React.FC<ThietbiState> = (props) => {
+    const { data } = props
 
     const columns = [
         {
@@ -77,35 +65,35 @@ const TableThietbi = () => {
             dataIndex: 'connect',
             render: (checkSatus: boolean) => (
                 <>
-                {
-                    checkSatus ?
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <img src={require('../../../../assets/icon/circlegreen.png')} />
-                            <span style={{ marginLeft: '8px' }}>
-                                Kết nối
-                            </span>
-                        </div>
-                        :
-                        <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <img src={require('../../../../assets/icon/circlered.png')} />
-                            <p style={{ marginLeft: '8px' }}>
-                                Mất kết nối
-                            </p>
-                        </div>
-                }
-            </>
+                    {
+                        checkSatus ?
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <img src={require('../../../../assets/icon/circlegreen.png')} />
+                                <span style={{ marginLeft: '8px' }}>
+                                    Kết nối
+                                </span>
+                            </div>
+                            :
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                            >
+                                <img src={require('../../../../assets/icon/circlered.png')} />
+                                <p style={{ marginLeft: '8px' }}>
+                                    Mất kết nối
+                                </p>
+                            </div>
+                    }
+                </>
             )
         },
         {
@@ -134,8 +122,8 @@ const TableThietbi = () => {
         {
             title: '',
             dataIndex: 'description',
-            render: (link :string) => (
-                <Link to={link}
+            render: (link: string, record:any) => (
+                <Link to={ `${link}/${record.key}`}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
@@ -145,8 +133,8 @@ const TableThietbi = () => {
         {
             title: '',
             dataIndex: 'update',
-            render: (link :string) => (
-                <Link to={link}
+            render: (link: string, record: any) => (
+                <Link to={ `${link}/${record.key}`}
                     style={{
                         whiteSpace: 'nowrap'
                     }}

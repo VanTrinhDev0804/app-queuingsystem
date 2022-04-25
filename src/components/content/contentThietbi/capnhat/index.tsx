@@ -1,12 +1,36 @@
 import React, { useState } from 'react'
 import { Select, Button, Form, Input } from 'antd'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { useAppSelector, useAppDispatch } from 'redux/hooks'
+import { IParams, ItemTBThietBi } from 'types'
+import { doc, setDoc } from 'firebase/firestore'
+import { db } from '../../../../firebase/cofig'
+import { updateItems } from 'redux/slice/ThietbiSlice'
 import './styles.scss'
+
 
 
 const ContentCapNhatThietbi = () => {
     const { Option } = Select
+
+    const { id }: IParams = useParams();
+    const { data } = useAppSelector(state => state.thietbi)
+    const dispatch = useAppDispatch()
   
+    const itemID = data?.filter((item) => {
+        return `${item.key}` === id
+    })
+    const initValues = itemID?.[0]
+
+    console.log(initValues)
+    const [maTb, SetMaTb] = useState(initValues.maTB);  
+    const [tenTb, SetTenTb] = useState(initValues.nameTB);
+    const [dcIP, setDcIPP] = useState(initValues.diachiIP);
+    const [dichvu, setDichvu] = useState(initValues.dichvu);
+    const [loaiTb, SetLoaiTb] = useState(initValues.loaiTb);
+    const [userName, SetUserName] = useState("");
+    const [password, setPassword] = useState("");
+
     const listDV = [
         'Khám tim mạch',
         'Khám sản phụ khoa',
@@ -17,25 +41,47 @@ const ContentCapNhatThietbi = () => {
     ]
     const optionSelect = listDV.map((text, key) => {
         return (
-            <Option key={key}>
+            <Option key={text}>
                 {text}
             </Option>
         )
     })
 
-   
-    const onChange = (e: any) => {
-
-        let name = e.target.name;
-        let value = e.target.value
-        let obj = {
-            [name]: value
-        }
-      
+    const dataUpdate: ItemTBThietBi = {
+        key: initValues?.key,
+        maTB: maTb,
+        nameTB: tenTb,
+        loaiTb: loaiTb,
+        diachiIP: dcIP,
+        active: true,
+        connect: true,
+        dichvu: dichvu,
+        description: '/thietbi/chitiet',
+        update: '/thietbi/capnhat',
     }
 
+    const writeDataCapso = async (data : any, index : any) => {
+        await setDoc(doc(db, "Thietbi", `${index}`), data);
+    }
+    const UpdateItemThietBi = () => {
+        const isEmpty = Object.values(dataUpdate).includes('');
+        console.log(isEmpty)
+        if (!isEmpty) {
+            writeDataCapso(dataUpdate, initValues?.key)
+            dispatch(updateItems(dataUpdate))
+            alert("Cập nhật thiết bị thành công")
+        }
+        else {
+            alert("Phải nhập đầy đủ thông tin")
+        }
+    }
+
+
+   
+
+
     return (
-        <div className="ContentCapNhatThietbi">
+        <div className="ContentCaNhatThietbi">
 
             <div className="ContentCapNhatThietbi-Form">
                 <h2>Thông tin thiết bị</h2>
@@ -44,19 +90,20 @@ const ContentCapNhatThietbi = () => {
                     <Form
                         layout="vertical"
                         className='ContentCapNhatThietbi-Form_InputLeft'
-                        onChange={onChange}
+
                     >
                         <Form.Item
                             label="Mã thiết bị:"
                             name="maTB"
-                           initialValue={"KIO_01"}
+                            initialValue={maTb}
                         >
 
                             <Input
                                 type="text"
                                 name="maTB"
                                 placeholder='Nhập mã thiết bị'
-                               
+                             
+                                onChange={(e) => SetMaTb(e.target.value)}
                             />
 
                         </Form.Item>
@@ -64,23 +111,25 @@ const ContentCapNhatThietbi = () => {
                         <Form.Item
                             label="Tên thiết bị:"
                             name="nameTB"
-                            initialValue={"Kiosk"}
+                            initialValue={tenTb}
                         >
                             <Input
                                 type="text"
                                 name="nameTB"
                                 placeholder='Nhập tên thiết bị'
+                                onChange={(e) => SetTenTb(e.target.value)}
                             />
                         </Form.Item>
                         <Form.Item
                             label="Địa chỉ IP:"
                             name="diachiIP"
-                            initialValue={"128.172.308"}
+                            initialValue={dcIP}
                         >
                             <Input
                                 type="text"
                                 name="diachiIP"
                                 placeholder='Nhập địa chỉ IP'
+                                onChange={(e) => setDcIPP(e.target.value)}
                             />
                         </Form.Item>
 
@@ -89,7 +138,6 @@ const ContentCapNhatThietbi = () => {
                     <Form
                         layout="vertical"
                         className='ContentCapNhatThietbi-Form_InputRight'
-                        onChange={onChange}
                     >
                         <Form.Item
                             label="Chọn loại thiết bị:"
@@ -98,7 +146,8 @@ const ContentCapNhatThietbi = () => {
                                 style={{ width: 540 }}
                                 bordered={false}
                                 placeholder="Chọn loại thiết bị"
-                                defaultValue={"kiosk"}
+                                defaultValue={loaiTb}
+                                onChange={(e) => SetLoaiTb(e)}
                             >
                                 <Option value="kiosk">Kiosk</Option>
                                 <Option value="hethong">Display counter</Option>
@@ -107,11 +156,12 @@ const ContentCapNhatThietbi = () => {
                         <Form.Item
                             label="Tên đăng nhập:"
                             name="username"
-                            initialValue={"Linhkyo01"}
+                            initialValue={"Lequynhaivan01"}
                         >
                             <Input type="text"
                                 name="username"
                                 placeholder='Nhập tên đăng nhập'
+                                onChange={(e) => SetUserName(e.target.value)}
                             />
                         </Form.Item>
                         <Form.Item
@@ -124,6 +174,7 @@ const ContentCapNhatThietbi = () => {
                                 type="password"
                                 name="password"
                                 placeholder='Nhập mật khẩu'
+                                onChange={(e) => e.target.value}
                             />
                         </Form.Item>
 
@@ -143,7 +194,8 @@ const ContentCapNhatThietbi = () => {
                                 allowClear
                                 style={{ width: '1104px' }}
                                 placeholder="Nhập dịch vụ sử dụng"
-                                defaultValue={listDV}
+                                defaultValue={dichvu}
+                                onChange={(e)=>setDichvu(dichvu?.concat(e))}
                             >
                                 {optionSelect}
                             </Select>
@@ -154,22 +206,23 @@ const ContentCapNhatThietbi = () => {
             </div>
 
             <div className='ContentCapNhatThietbi-btn-group'>
-                <Button 
-                type="primary" 
-                className="btn-cancel" >
-
-                    Hủy
+                <Button
+                    type="primary"
+                    className="btn-cancel" >
+                    <Link to={'/thietbi'}>
+                        Hủy
+                    </Link>
 
                 </Button>
                 <Button
                     type="primary"
                     htmlType="submit"
                     className="btn-continue"
+                    onClick={UpdateItemThietBi}
                 >
-                    <Link to ={'/thietbi'}>
-                        Cập nhật
-                    </Link>
-                   
+
+                    Cập nhật
+
                 </Button>
 
 

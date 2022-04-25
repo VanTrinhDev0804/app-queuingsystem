@@ -1,10 +1,9 @@
 import React from 'react'
 import { Layout, Breadcrumb, Avatar } from 'antd';
-import Notification from '../notification';
-import './styles.scss'
-import { IBread, IHeader, IParams } from 'types';
+import {  IHeader, IParams } from 'types';
 import { Link, useParams } from 'react-router-dom';
 import HeaderAccount from './account';
+import './styles.scss'
 
 const { Header } = Layout;
 
