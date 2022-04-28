@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { Select, Button, Table, Input, DatePicker, Space } from 'antd'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, Redirect, useHistory, useParams } from 'react-router-dom'
 import './styles.scss'
+import { useAppSelector } from 'redux/hooks'
+import { IParams } from 'types'
 
 
 const ContentChiTietDichvu = () => {
@@ -9,10 +11,19 @@ const ContentChiTietDichvu = () => {
     const { Search } = Input
     const { RangePicker } = DatePicker;
 
+    const { id }: IParams = useParams()
+    const { data } = useAppSelector(state => state.dichvu)
+    const itemID = data?.filter((item) => {
+        return `${item.key}` === id
+    })
+    const initValue = itemID?.[0]
 
-    const data = [];
-    for (let i = 20000; i <= 200100; i++) {
-        data.push({
+    console.log(initValue.roleCS)
+
+    console.log(initValue)
+    const dataStt = [];
+    for (let i = 20000; i <= 20010; i++) {
+        dataStt.push({
             key: i,
             stt: i,
             status: 1,
@@ -24,17 +35,14 @@ const ContentChiTietDichvu = () => {
             title: 'Số thứ tự',
             dataIndex: 'stt',
         },
-     
-    //   1 đang thực hiện
-    //  0 đã hoàn thành 
-    //  nguoc lai vắng
+
         {
             title: 'Trạng thái ',
             dataIndex: 'status',
-            render: (checkSatus :number) => (
+            render: (checkSatus: number) => (
                 <>
                     {
-                        checkSatus ===0 ?
+                        checkSatus === 0 ?
                             <div
                                 style={{
                                     display: 'flex',
@@ -49,85 +57,92 @@ const ContentChiTietDichvu = () => {
                             </div>
                             :
                             checkSatus === 1 ?
-                            <div
-                                style={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <img src={require('../../../../assets/icon/circleblue.png')} />
-                                <span style={{ marginLeft: '8px' }}>
-                                    Đang thực hiện
-                                </span>
-                            </div>
-                            :
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <img src={require('../../../../assets/icon/circleblue.png')} />
+                                    <span style={{ marginLeft: '8px' }}>
+                                        Đang thực hiện
+                                    </span>
+                                </div>
+                                :
 
-                            <div
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
-                        >
-                            <img src={require('../../../../assets/icon/circlenoactive.png')} />
-                            <span style={{ marginLeft: '8px' }}>
-                                vắng
-                            </span>
-                        </div>
+                                <div
+                                    style={{
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center'
+                                    }}
+                                >
+                                    <img src={require('../../../../assets/icon/circlenoactive.png')} />
+                                    <span style={{ marginLeft: '8px' }}>
+                                        vắng
+                                    </span>
+                                </div>
 
                     }
                 </>
             )
         },
-    
-     
+
+
     ];
 
     return (
         <div className="ContentDvuChitiet">
 
             <div className="ContentDvuChitiet-Left">
-                <h2>Thông tin thiết bị</h2>
+                <h2>Thông tin dịch vụ</h2>
 
                 <div className="ContentDvuChitiet-content_list">
                     <div className="ContentDvuChitiet-content_list_item">
                         <p className='lable'>Mã dịch vụ:</p>
-                        <p className='value'>201</p>
+                        <p className='value'>{initValue.maDV}</p>
                     </div>
                     <div className="ContentDvuChitiet-content_list_item">
                         <p className='lable'>Tên dịch vụ:</p>
-                        <p className='value'>Khám tim mạch</p>
+                        <p className='value'>{initValue.tenDV}</p>
                     </div>
                     <div className="ContentDvuChitiet-content_list_item">
                         <p className='lable'>Mô tả:</p>
-                        <p className='value'>Chuyên các bệnh lý về tim</p>
+                        <p className='value'>{initValue.describe}</p>
                     </div>
                 </div>
 
                 <h2>Quy tắc cấp số  </h2>
                 <div className="ContentDvuChitiet-content_RoleCapso">
-                    <div className="ContentDvuChitiet-content_RoleCapso_item">
-                        <p className='lable'> Tăng tự động từ:</p>
-                        <p className='value'>
-                            <span className='number'>0001 </span> đến  <span className='number'> 9999</span>
-                        </p>
-                    </div>
-                    <div className="ContentDvuChitiet-content_RoleCapso_item">
-                        <p className='lable'>  Prefix:</p>
-                        <p className='value'>
-                            <span className='number space'>0001</span>
-                        </p>
-                    </div>
-                    <div className="ContentDvuChitiet-content_RoleCapso_item">
-                        <p className='lable'>  Sunfix: </p>
-                        <p className='value'>
-                            <span className='number space'>0001</span>
-                        </p>
-                    </div>
-                    <div className="ContentDvuChitiet-content_RoleCapso_item">
-                        <p className='lable'>  Reset mỗi ngày</p>
-                    </div>
+                    {
+                        initValue.roleCS.includes('auto') ? <div className="ContentDvuChitiet-content_RoleCapso_item">
+                            <p className='lable'> Tăng tự động từ:</p>
+                            <p className='value'>
+                                <span className='number'>0001 </span> đến  <span className='number'> 9999</span>
+                            </p>
+                        </div> : ""
+                    }
+                    {
+                        initValue.roleCS.includes('Prefix') ? <div className="ContentDvuChitiet-content_RoleCapso_item">
+                            <p className='lable'>  Prefix:</p>
+                            <p className='value'>
+                                <span className='number space'>0001</span>
+                            </p>
+                        </div> : ""
+                    }
+                    {
+                        initValue.roleCS.includes('Sunfix') ? <div className="ContentDvuChitiet-content_RoleCapso_item">
+                            <p className='lable'>  Sunfix: </p>
+                            <p className='value'>
+                                <span className='number space'>0001</span>
+                            </p>
+                        </div> : ""}
+                    {
+                        initValue.roleCS.includes('reset') ? <div className="ContentDvuChitiet-content_RoleCapso_item">
+                            <p className='lable'>  Reset mỗi ngày</p>
+                        </div> : ""
+                    }
                     <div className="ContentDvuChitiet-content_RoleCapso_item">
                         <p className='value'>Ví dụ: 201- 2001</p>
                     </div>
@@ -177,7 +192,7 @@ const ContentChiTietDichvu = () => {
                 </div>
                 <div className="ContentDvuChitiet-Right-table">
                     <Table
-                        dataSource={data}
+                        dataSource={dataStt}
                         columns={columns} />
                 </div>
 

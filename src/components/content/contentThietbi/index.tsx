@@ -32,7 +32,7 @@ const ContentThietbi: React.FC<IControlPage> = (props) => {
     const result: any = []
     useEffect(() => {
         const getDataThietBi = async () => {
-            const querySnapshot = await getDocs(dataCollectionRef)
+            const querySnapshot = await getDocs(dataCollectionRef)      
             querySnapshot.forEach((doc) => {
                 let item = doc.data()
                 result.push({ ...item })

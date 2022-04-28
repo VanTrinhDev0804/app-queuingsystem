@@ -1,26 +1,45 @@
-import React, { useState } from 'react'
-import { Layout, Button, Select } from 'antd'
-import ContentCapSoMoi from './themDichvu'
+import React, { useState, useEffect } from 'react'
+import { Layout} from 'antd'
 import TableThietbi from './tableDichvu'
 import ControllThietbi from './controll'
-
 import ContentThietbiMoi from './themDichvu'
-import { Link } from 'react-router-dom'
-import { IControlPage } from 'types'
+import { Link, useParams } from 'react-router-dom'
+import { IControlPage, IParams } from 'types'
 import ContentThietbiChiTiet from './chitiet'
-
-
-import './styles.scss'
 import ContentCapNhatThietbi from './capnhat'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../../../firebase/cofig'
+import { addItemsTBDichvu } from 'redux/slice/DichvuSlice'
+import './styles.scss'
+import TableDichvu from './tableDichvu'
+
 
 const ContentDichvu: React.FC<IControlPage> = (props) => {
 
     const { Content } = Layout
     const { controller } = props
-    const pathBtn = controller === 'chitiet' ? '/dichvu/capnhat' : '/dichvu/themdichvu'
+    const {id} : IParams = useParams()
+    const pathBtn = controller === 'chitiet' ? `/dichvu/capnhat/${id}` : '/dichvu/themdichvu'
     const nameBtn = controller === 'chitiet' ? 'Cập nhật dịch vụ' : 'Thêm dịch vụ'
 
 
+
+    const {data} = useAppSelector(state =>state.dichvu)
+    const dispatch = useAppDispatch()
+    const dataCollectionRef = collection(db, 'Dichvu')
+    const result: any = []
+    useEffect(() => {
+        const getData = async () => {
+            const querySnapshot = await getDocs(dataCollectionRef)      
+            querySnapshot.forEach((doc) => {
+                let item = doc.data()
+                result.push({ ...item })
+            })
+            dispatch(addItemsTBDichvu(result))
+        }
+        getData()
+    }, []);
     return (
         <Content>
             {
@@ -65,7 +84,7 @@ const ContentDichvu: React.FC<IControlPage> = (props) => {
                                 {/* {controller} */}
                                 <ControllThietbi />
                                 {/* Table */}
-                                <TableThietbi />
+                                <TableDichvu data={data} />
                             </div>
                         </>
 

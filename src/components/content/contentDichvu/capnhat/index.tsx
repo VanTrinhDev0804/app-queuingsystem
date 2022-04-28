@@ -1,50 +1,92 @@
 import React, { useState } from 'react'
 import { Select, Button, Form, Input, Checkbox } from 'antd'
-import { Link, Redirect, useHistory } from 'react-router-dom'
+import { Link, useHistory, useParams, } from 'react-router-dom'
 import './styles.scss'
+import { IParams } from 'types'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { writeDataFireStore } from '../../../../firebase/AsyncActtions'
+import { updateItemsDV } from 'redux/slice/DichvuSlice'
 
 
-const ContentCapNhatThietbi = () => {
+const ContentCapNhatDichvu = () => {
     const { Option } = Select
     const { TextArea } = Input
 
+    const { id }: IParams = useParams()
+    const history = useHistory()
+    const { data } = useAppSelector(state => state.dichvu)
+    const dispatch = useAppDispatch()
 
-    const onCheckedChange= (checkedValues : any)=> {
-        console.log('checked = ', checkedValues);
-      }
+    const itemID = data?.filter((item) => {
+        return `${item.key}` === id
+    })
 
-    const onChange = (e: any) => {
+    const initValues = itemID?.[0]
 
-        let name = e.target.name;
-        let value = e.target.value
-        let obj = {
-            [name]: value
+
+    const [maDV, setMaDV] = useState(initValues.maDV)
+    const [tenDV, setTenDV] = useState(initValues.tenDV)
+    const [decribeDV, setDecribeDV] = useState(initValues.describe)
+    const [roleCS, setRoleCapSo] = useState(initValues.roleCS)
+
+
+
+
+    const onCheckedChange = (checkedValues: any) => {
+        setRoleCapSo(checkedValues)
+    }
+
+    const handleCapNhatDV = () => {
+        const dataUpdateDV = {
+            key: initValues.key,
+            maDV: maDV,
+            tenDV: tenDV,
+            describe: decribeDV,
+            active: true,
+            roleCS: roleCS,
+            description: '/dichvu/chitiet',
+            update: '/dichvu/capnhat',
+        }
+        let isEmtyDV = Object.values(dataUpdateDV).includes('')
+        const checkKey = data.findIndex((item) => {
+            return item.maDV == dataUpdateDV.maDV
+        })
+        if (isEmtyDV) {
+            alert("Phải điền đầy đủ thông tin")
+        } else {
+            if (!isEmtyDV && checkKey === -1) {
+                writeDataFireStore(dataUpdateDV, "Dichvu", initValues.key)
+                dispatch(updateItemsDV(dataUpdateDV))
+                history.push('/dichvu')
+            }  else if (checkKey !== -1) {
+                alert("Mã dịch vụ đã tồn tại!!")
+            }
         }
 
     }
-
     return (
-        <div className="ContentCapNhatThietbi">
+        <div className="ContentCapNhatDichvu">
 
-            <div className="ContentCapNhatThietbi-Form">
+            <div className="ContentCapNhatDichvu-Form">
                 <h2>Thông tin thiết bị</h2>
-                <div className="ContentCapNhatThietbi-Form_Input">
+                <div className="ContentCapNhatDichvu-Form_Input">
 
                     <Form
                         layout="vertical"
-                        className='ContentCapNhatThietbi-Form_InputLeft'
-                        onChange={onChange}
+                        className='ContentCapNhatDichvu-Form_Input-Left'
+
                     >
                         <Form.Item
                             label="Mã dịch vụ:"
                             name="maDichvu"
-                            initialValue={201}
+                            initialValue={maDV}
                         >
 
                             <Input
                                 type="text"
                                 name="maDichvu"
                                 placeholder='Nhập mã dịch vụ'
+                                onChange={(e) => { setMaDV(e.target.value) }}
                             />
 
                         </Form.Item>
@@ -52,12 +94,13 @@ const ContentCapNhatThietbi = () => {
                         <Form.Item
                             label="Tên dịch vụ:"
                             name="tenDichvu"
-                            initialValue={"Khám tim mạch"}
+                            initialValue={tenDV}
                         >
                             <Input
                                 type="text"
                                 name="tenDichvu"
                                 placeholder='Nhập tên dịch vụ'
+                                onChange={(e) => { setTenDV(e.target.value) }}
                             />
                         </Form.Item>
 
@@ -65,30 +108,35 @@ const ContentCapNhatThietbi = () => {
 
                     <Form
                         layout="vertical"
-                        className='ContentCapNhatThietbi-Form_InputRight'
-                        onChange={onChange}
-                    >
+                        className='ContentCapNhatDichvu-Form_Input-Right'
 
+                    >
                         <Form.Item
                             label="Mô tả:"
                             name="description"
-                            initialValue={"Mô tả dịch vụ"}
+                            initialValue={decribeDV}
+
                         >
                             <TextArea
                                 className='textArea'
-                                placeholder="maxLength is 6"
+                                onChange={(e) => { setDecribeDV(e.target.value) }}
+
                             />
                         </Form.Item>
 
                     </Form>
                 </div>
 
-                <div className="ContentCapNhatThietbi-Form_roleCapso">
+                <div className="ContentCapNhatDichvu-Form_roleCapso">
                     <h3>
                         Quy tắc cấp số
                     </h3>
-                    <div className="ContentCapNhatThietbi-Form_roleCapso-GroupCheckBox">
-                        <Checkbox.Group style={{ width: '100%' }} onChange={onCheckedChange}>
+                    <div className="ContentCapNhatDichvu-Form_roleCapso-GroupCheckBox">
+                        <Checkbox.Group
+                            style={{ width: '100%' }}
+                            onChange={onCheckedChange}
+                            defaultValue={roleCS}
+                        >
 
                             <Checkbox value="auto">
                                 Tăng tự động từ: <span className='number'>0001</span> đến <span className='number'> 9999</span>
@@ -111,22 +159,23 @@ const ContentCapNhatThietbi = () => {
                 </div>
             </div>
 
-            <div className='ContentCapNhatThietbi-btn-group'>
+            <div className='ContentCapNhatDichvu-btn-group'>
                 <Button
                     type="primary"
                     className="btn-cancel" >
-
-                    Hủy
-
+                    <Link to={'/dichvu'}>
+                        Hủy
+                    </Link>
                 </Button>
                 <Button
                     type="primary"
                     htmlType="submit"
                     className="btn-continue"
+                    onClick={handleCapNhatDV}
                 >
-                    <Link to={'/dichvu'}>
-                        Cập nhật
-                    </Link>
+
+                    Cập nhật
+
 
                 </Button>
 
@@ -134,8 +183,8 @@ const ContentCapNhatThietbi = () => {
             </div>
 
 
-        </div>
+        </div >
     )
 }
 
-export default ContentCapNhatThietbi
+export default ContentCapNhatDichvu

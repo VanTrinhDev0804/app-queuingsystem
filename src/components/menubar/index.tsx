@@ -12,7 +12,6 @@ const MenuSider = () => {
     const history = useHistory()
     const { page }: IParams = useParams()
     const handleClick = (e: any) => {
-        console.log(e.key)
         history.push(e.key);
     }
 

@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import { addItemsTBThietbi } from 'redux/slice/ThietbiSlice'
 import { ItemTBThietBi } from 'types'
 import './styles.scss'
+import { writeDataFireStore } from '../../../../firebase/AsyncActtions'
 
 
 const ContentThietbiMoi = () => {
@@ -45,20 +46,16 @@ const ContentThietbiMoi = () => {
     }
 
 
-
-    const writeDataCapso = async (data : any, index : any) => {
-        await setDoc(doc(db, "Thietbi", `${index}`), data);
-    }
-                                                                                                                                                                    
+                                                                                                                                                                 
     const handleThemThietbi = () => {
         
     const lastKey = data ? data[data.length-1].key : 0
     const newKey = lastKey ? lastKey + 1 : lastKey
-    console.log(newKey)
+
     const dataInput: ItemTBThietBi = {
         key: newKey,
         maTB: maTb,
-        nameTB: tenTb,
+        nameTB: tenTb,  
         loaiTb: loaiTb,
         diachiIP: dcIP,
         active: true,
@@ -68,15 +65,22 @@ const ContentThietbiMoi = () => {
         update: '/thietbi/capnhat',
     }
         const isEmpty = Object.values(dataInput).includes('');
-        console.log(isEmpty)
-        if (!isEmpty) {
-            writeDataCapso(dataInput,newKey )
-            dispatch(addItemsTBThietbi(data?.concat(dataInput)))
-            alert("Thêm thiết bị thành công!")
+        const checkKey = data.findIndex((item) => {
+            return item.maTB== dataInput.maTB
+        })
+        if (isEmpty) {
+            alert("Phải điền đầy đủ thông tin")
+        }else{
+            if (!isEmpty && checkKey === -1) {
+                writeDataFireStore(dataInput,"Thietbi",newKey )
+                dispatch(addItemsTBThietbi(data?.concat(dataInput)))
+                alert("Thêm thiết bị thành công!")
+            }
+            else if (checkKey !== -1) {
+                alert("Mã thiết bị đã tồn tại!!")
+            }
         }
-        else {
-            alert("Phải nhập đầy đủ thông tin thiết bị")
-        }
+     
 
     }
 

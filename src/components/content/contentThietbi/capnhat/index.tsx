@@ -21,8 +21,6 @@ const ContentCapNhatThietbi = () => {
         return `${item.key}` === id
     })
     const initValues = itemID?.[0]
-
-    console.log(initValues)
     const [maTb, SetMaTb] = useState(initValues.maTB);  
     const [tenTb, SetTenTb] = useState(initValues.nameTB);
     const [dcIP, setDcIPP] = useState(initValues.diachiIP);
@@ -65,7 +63,7 @@ const ContentCapNhatThietbi = () => {
     }
     const UpdateItemThietBi = () => {
         const isEmpty = Object.values(dataUpdate).includes('');
-        console.log(isEmpty)
+      
         if (!isEmpty) {
             writeDataCapso(dataUpdate, initValues?.key)
             dispatch(updateItems(dataUpdate))

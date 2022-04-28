@@ -54,6 +54,18 @@ export interface ItemTBThietBi{
   description?:string
   update?: string
 }
+// Dịch vụ
+
+export interface ItemTBDichvu{
+  key?: number
+  maDV?: string
+  tenDV?: string
+  describe?: string
+  active?: boolean
+  roleCS: Array<string>
+  description?:string
+  update?: string
+}
 
 // Cấp số 
 export interface ItemTBCapso{

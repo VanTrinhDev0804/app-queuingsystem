@@ -2,38 +2,74 @@ import React, { useState } from 'react'
 import { Select, Button, Form, Input, Checkbox } from 'antd'
 import { Link, Redirect, useHistory } from 'react-router-dom'
 import './styles.scss'
+import { writeDataFireStore } from '../../../../firebase/AsyncActtions'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { addItemsTBDichvu } from 'redux/slice/DichvuSlice'
+import { idText } from 'typescript'
+
 
 
 const ContentThemDichvu = () => {
     const { TextArea } = Input
 
+    const { data } = useAppSelector(state => state.dichvu)
+    const dispacth = useAppDispatch()
+
+    const [maDV, setMaDV] = useState("")
+    const [tenDV, setTenDV] = useState("")
+    const [decribeDV, setDecribeDV] = useState("")
+    const [roleCS, setRoleCapSo] = useState([])
 
 
-    const onChange = (e: any) => {
 
-        let name = e.target.name;
-        let value = e.target.value
-        let obj = {
-            [name]: value
-        }
-
+    const onCheckedChange = (checkedValues: any) => {
+        setRoleCapSo(checkedValues)
     }
 
-    const onCheckedChange= (checkedValues : any)=> {
-        console.log('checked = ', checkedValues);
-      }
+    const handleThemDV = () => {
+        const lastKey = data ? data[data.length - 1].key : 0
+        const newKey = lastKey ? lastKey + 1 : lastKey
+        const dataDichvu = {
+            key: newKey,
+            maDV: maDV,
+            tenDV: tenDV,
+            describe: decribeDV,
+            active: true,
+            roleCS: roleCS,
+            description: '/dichvu/chitiet',
+            update: '/dichvu/capnhat',
+        }
+        let isEmtyDV = Object.values(dataDichvu).includes('')
+        const checkKey = data.findIndex((item) => {
+            return item.maDV == dataDichvu.maDV
+        })
 
+        if (isEmtyDV) {
+            alert("Phải điền đầy đủ thông tin")
+        }
+        else {
+            if (!isEmtyDV && checkKey === -1) {
+                writeDataFireStore(dataDichvu, "Dichvu", newKey)
+                dispacth(addItemsTBDichvu(data?.concat(dataDichvu)))
+            }
+            else if (checkKey !== -1) {
+                alert("Mã dịch vụ đã tồn tại!!")
+            }
+        }
+
+
+
+    }
     return (
         <div className="ContentThemDichvu">
 
             <div className="ContentThemDichvu-Form">
-                <h2>Thông tin thiết bị</h2>
+                <h2>Thông tin dịch vụ</h2>
                 <div className="ContentThemDichvu-Form_Input">
 
                     <Form
                         layout="vertical"
                         className='ContentThemDichvu-Form_InputLeft'
-                        onChange={onChange}
                     >
                         <Form.Item
                             label="Mã dịch vụ:"
@@ -44,6 +80,7 @@ const ContentThemDichvu = () => {
                                 type="text"
                                 name="maDichvu"
                                 placeholder='Nhập mã dịch vụ'
+                                onChange={(e) => { setMaDV(e.target.value) }}
                             />
 
                         </Form.Item>
@@ -56,6 +93,7 @@ const ContentThemDichvu = () => {
                                 type="text"
                                 name="tenDichvu"
                                 placeholder='Nhập tên dịch vụ'
+                                onChange={(e) => { setTenDV(e.target.value) }}
                             />
                         </Form.Item>
 
@@ -64,7 +102,6 @@ const ContentThemDichvu = () => {
                     <Form
                         layout="vertical"
                         className='ContentThemDichvu-Form_InputRight'
-                        onChange={onChange}
                     >
 
                         <Form.Item
@@ -73,7 +110,8 @@ const ContentThemDichvu = () => {
                         >
                             <TextArea
                                 className='textArea'
-                                placeholder="maxLength is 6"
+                                placeholder="Mô tả dịch vụ"
+                                onChange={(e) => { setDecribeDV(e.target.value) }}
                             />
                         </Form.Item>
 
@@ -93,7 +131,7 @@ const ContentThemDichvu = () => {
                             <Checkbox value="Prefix">
                                 Prefix: <span className='number space'>0001</span>
                             </Checkbox>
-                            <Checkbox value="Sunfix" > 
+                            <Checkbox value="Sunfix" >
                                 Sunfix: <span className='number space'>0001</span>
                             </Checkbox>
                             <Checkbox value="reset" >
@@ -112,16 +150,17 @@ const ContentThemDichvu = () => {
                 <Button
                     type="primary"
                     className="btn-cancel" >
-
-                    Hủy bỏ
-
+                    <Link to={"/dichvu"}>
+                        Hủy bỏ
+                    </Link>
                 </Button>
                 <Button
                     type="primary"
                     htmlType="submit"
                     className="btn-continue"
+                    onClick={handleThemDV}
                 >
-                    
+
                     Thêm dịch vụ
                 </Button>
 

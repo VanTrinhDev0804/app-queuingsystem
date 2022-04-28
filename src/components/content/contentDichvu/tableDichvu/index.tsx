@@ -1,22 +1,11 @@
 import React from 'react'
 import { Table } from 'antd'
-
 import './styles.scss'
 import { Link } from 'react-router-dom';
+import { DichvuState } from 'redux/slice/DichvuSlice';
 
-const tableDichvu = () => {
-    const data = [];
-    for (let i = 1; i <= 100; i++) {
-        data.push({
-            key: i,
-            maDV: 'KIO_01',
-            tenDV: 'Kiosk',
-            describe: `Mô tả  ${i}`,
-            active: true,   
-            description: '/dichvu/chitiet',
-            update: '/dichvu/update',
-        });
-    }
+const TableDichvu : React.FC<DichvuState>= (props) => {
+    const { data } = props;
 
     const columns = [
         {
@@ -71,8 +60,8 @@ const tableDichvu = () => {
         {
             title: '',
             dataIndex: 'description',
-            render: () => (
-                <Link to={'/dichvu/chitiet'}
+            render: (link: string, record:any) => (
+                <Link to={ `${link}/${record.key}`}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
@@ -82,8 +71,8 @@ const tableDichvu = () => {
         {
             title: '',
             dataIndex: 'update',
-            render: () => (
-                <Link to={'dichvu/capnhat'}
+            render: (link: string, record: any) => (
+                <Link to={ `${link}/${record.key}`}
                     style={{
                         whiteSpace: 'nowrap'
                     }}
@@ -103,4 +92,4 @@ const tableDichvu = () => {
     )
 }
 
-export default tableDichvu
+export default TableDichvu
