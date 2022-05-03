@@ -4,8 +4,10 @@ import { IParams } from './types/index'
 
 
 const generatePage = (name: string) => {
-    if (name.indexOf('login') === -1) {
-
+    
+    let checkName =  name.indexOf("reset-password")!== -1 || name.indexOf('forgot-password') !== -1 ? true :false
+    if (!checkName ) {
+ 
         const page = () => require(`./pages/${name}`).default;
     
         try {
@@ -13,9 +15,10 @@ const generatePage = (name: string) => {
         } catch (error) {
             return <h2> Not Found</h2>
         }
+      
 
     } else {
-        const page = () => require(`./pages/login`).default;
+        const page = () => require(`./pages`).default;
 
         try {
             return React.createElement(page());
@@ -23,6 +26,7 @@ const generatePage = (name: string) => {
             return <h2> Not Found</h2>
         }
     }
+
 
 
 }
@@ -35,7 +39,6 @@ const PageRender = () => {
         name = `${page}`;
     }
    
-    console.log(id)
     return generatePage(name)
     
 

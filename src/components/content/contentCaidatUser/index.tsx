@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Layout } from 'antd'
 import { Link } from 'react-router-dom'
 import { IControlPage } from 'types'
@@ -7,6 +7,10 @@ import TableTaiKhoan from './tableTaiKhoan'
 import ContentThemTaiKhoan from './themTaiKhoan'
 import ContentCapNhatTaiKhoan from './capnhat'
 import './styles.scss'
+import { useAppDispatch, useAppSelector } from 'redux/hooks'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../../../firebase/cofig'
+import { addListUser } from 'redux/slice/authSlice'
 
 const ContentCaidatUser: React.FC<IControlPage> = (props) => {
 
@@ -14,6 +18,23 @@ const ContentCaidatUser: React.FC<IControlPage> = (props) => {
     const { controller } = props
 
 
+    const { userList } = useAppSelector(state => state.auth)
+
+    const dispatch = useAppDispatch()
+    const dataCollectionRef = collection(db, 'User');
+    const result: any = []
+    
+    useEffect(() => {
+        const getData = async () => {
+            const querySnapshot = await getDocs(dataCollectionRef)
+            querySnapshot.forEach((doc) => {
+                let item = doc.data()
+                result.push({ ...item })
+            })
+            dispatch(addListUser(result))
+        }
+        getData()
+    }, []);
 
 
     return (
@@ -39,7 +60,7 @@ const ContentCaidatUser: React.FC<IControlPage> = (props) => {
                                 {/* {controller} */}
                                 <ControllUser />
                                 {/* Table */}
-                                <TableTaiKhoan />
+                                <TableTaiKhoan userList={userList}/>
                             </div>
                         </>
 

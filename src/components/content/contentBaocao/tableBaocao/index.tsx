@@ -2,6 +2,7 @@ import React from 'react'
 import { Table } from 'antd'
 
 import './styles.scss'
+import { CapsoState } from 'redux/slice/CapsoSlice'
 
 
 function randomIntFromInterval(min: number, max: number) { // min and max included 
@@ -11,21 +12,10 @@ function randomIntFromInterval(min: number, max: number) { // min and max includ
 
 
 
-const TableBaocao = () => {
-    const data = [];
-    for (let i = 20000; i <= 20010; i++) {
-        data.push({
-            key: i,
-            stt: 1,
-            tenDichvu: 'Lê Quỳnh Ái Vân',
-            day: `07:20 - 07/10/2021`,
-            date: '1-2-2022',
-            status: randomIntFromInterval(0 ,2),
-            sourch: 'Kiosk',
+const TableBaocao : React.FC<CapsoState> = (props) => {
 
-        });
-    }
-
+    const {data} = props
+    console.log(data)
     const columns = [
         {
             title: 'Số thứ tự',
@@ -34,7 +24,7 @@ const TableBaocao = () => {
         },
         {
             title: 'Tên dịch vụ',
-            dataIndex: 'tenDichvu',
+            dataIndex: 'dichvu',
         
         },
 
@@ -99,7 +89,7 @@ const TableBaocao = () => {
         },
         {
             title: 'Nguồn cấp',
-            dataIndex: 'sourch',
+            dataIndex: 'source',
 
         },
         

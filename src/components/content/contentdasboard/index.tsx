@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Layout } from 'antd';
 import './styles.scss'
 import DasboardChartArea from './chartArea';
 import DasboardSelect from './controll';
 import { IDataCharts, IParams, ItemCharts } from 'types';
 import { useParams } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase/cofig';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
+import { addDataNgay, addDataThang, addDataTuan } from 'redux/slice/DasboardSlice';
 
 function randomIntFromInterval(min: number, max: number) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
@@ -12,37 +16,83 @@ function randomIntFromInterval(min: number, max: number) { // min and max includ
 
 const DasboardContent = () => {
     const { Content } = Layout;
-    const { control } :IParams= useParams()
+    const { control }: IParams = useParams()
 
+    const { ngay, tuan, thang } = useAppSelector(state => state.dasboard)
+    const dispatch = useAppDispatch()
+    const dataCollectionRef = collection(db, 'Dasboard');
+    const result: any = []
 
-    const data :IDataCharts[] =[]
-    for (let i = 1; i <= 100; i++) {
-        if(control=== undefined|| control ==='day'){
-            data.push({
-                x: i,
-                y: randomIntFromInterval(1000, 4000)
+    useEffect(() => {
+        const getData = async () => {
+            const querySnapshot = await getDocs(dataCollectionRef)
+            querySnapshot.forEach((doc) => {
+                let item = doc.data()
+                result.push({ ...item })
             })
-            
+            dispatch(addDataNgay(result?.[0]))
+            dispatch(addDataTuan(result?.[2]))
+            dispatch(addDataThang(result?.[1]))
         }
-        if(control ==='week'){
-            data.push({
-                x: 'Tuần ' + i,
-                y: randomIntFromInterval(1000, 4000)
-            })
+        getData()
+    }, []);
+
+    const data: Array<IDataCharts> = []
+    if (ngay) {
+        let x = Object.keys(ngay).map((ite) => {
+            return ite
+        })
+        let y = Object.values(ngay).map((ite) => {
+            return ite
+        })
+
+        if (control === undefined || control === 'day') {
+            for (var i = 0; i < x.length; i++) {
+                data.push({
+                    x: x[i],
+                    y: Number(y[i])
+                })
+            }
+
         }
-        if(control ==='month'){
-            data.push({
-                x: 'Tháng    ' + i,
-                y: randomIntFromInterval(1000, 4000)
-            })
+    }
+    if (tuan) {
+        let x = Object.keys(tuan).map((ite) => {
+            return ite
+        })
+        let y = Object.values(tuan).map((ite) => {
+            return ite
+        })
+
+        if ( control === 'week') {
+            for (var i = 0; i < x.length; i++) {
+                data.push({
+                    x: x[i],
+                    y: Number(y[i])
+                })
+            }
+
         }
-       
-    
-    
+    }
+    if (thang) {
+        let x = Object.keys(thang).map((ite) => {
+            return ite
+        })
+        let y = Object.values(thang).map((ite) => {
+            return ite
+        })
+
+        if ( control === 'month') {
+            for (var i = 0; i < x.length; i++) {
+                data.push({
+                    x: x[i],
+                    y: Number(y[i])
+                })
+            }
+
+        }
     }
 
-    console.log(data)
-   
     return (
 
         <Content>
@@ -153,10 +203,10 @@ const DasboardContent = () => {
                         <p className='asboard-chartArea-monthyear'>Tháng 11/2021</p>
                     </div>
 
-                <DasboardSelect/>
+                    <DasboardSelect />
                 </div>
                 <div className="Dasboard-chartArea-main">
-                    <DasboardChartArea data={data}/>
+                    <DasboardChartArea data={data} />
                 </div>
 
             </div>

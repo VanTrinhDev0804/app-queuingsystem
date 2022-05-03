@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authSlice from './slice/authSlice'
 import CapsoSlice from './slice/CapsoSlice'
+import DasboardSlice from './slice/DasboardSlice'
 import DichvuSlice from './slice/DichvuSlice'
 import ThietbiSlice from './slice/ThietbiSlice'
 // ...
@@ -8,6 +9,7 @@ import ThietbiSlice from './slice/ThietbiSlice'
 export const store = configureStore({
   reducer: {
     auth : authSlice,
+    dasboard: DasboardSlice,
     capso : CapsoSlice,
     thietbi: ThietbiSlice,
     dichvu : DichvuSlice

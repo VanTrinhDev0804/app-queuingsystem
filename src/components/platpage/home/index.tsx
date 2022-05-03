@@ -5,10 +5,13 @@ import MenuSider from '../../menubar';
 import HeaderPages from '../../header';
 import FormProfile from '../../profile';
 import { routesHome } from './routes';
+import { useAppSelector } from 'redux/hooks';
 
 
 
 const HomeComponent = () => {
+
+
   return (
     <Layout >
       <MenuSider />

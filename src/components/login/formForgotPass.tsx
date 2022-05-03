@@ -32,7 +32,7 @@ const FormForgotPassword = () => {
                         </Link>
                     </Button>
                     <Button type="primary" htmlType="submit" className="login-form-button">
-                        <Link to={`/login/reset-password`}>
+                        <Link to={`/reset-password`}>
                             Tiếp tục
                         </Link>
                     </Button>

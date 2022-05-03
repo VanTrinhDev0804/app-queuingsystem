@@ -1,0 +1,103 @@
+@import '../../assets/styles/variables';
+@import '../../assets/styles/mixins';
+
+
+.homepage {
+    height: 810px;
+    border-radius: 16px;
+    background-color: $backgroundPageColor;
+
+
+
+   
+
+
+    // Content
+
+    .ant-layout-content {
+        margin: '24px 16px 0';
+        background-color: $backgroundPageColor;
+    }
+
+    .Users-Profile {
+        width: 1112px;
+        height: 397px;
+        background: #FFFFFF;
+        box-shadow: 0px 2px 6px rgba(219, 219, 219, 0.5);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        margin-left: 24px;
+        margin-top: 80px;
+
+        &_Avatar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 24px;
+            position: relative;
+
+            h2 {
+                margin-top: 10px;
+                height: 36px;
+      
+                font-family: 'Nunito';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 24px;
+                line-height: 36px;
+                color: #282739;
+            }
+
+            .Upload-avatar {
+                position: absolute;
+                bottom: 55px;
+                right: 30px;
+
+                .ant-upload {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #ff7506;
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 24px;
+                    border: 2px solid #FFFFFF;
+
+                }
+            }
+        }
+
+        &_Form {
+            width: 70%;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+
+            &Right {
+                margin: 24px!important;
+            }
+
+        }
+
+        .ant-input,
+        .ant-input-disabled {
+            width: 384px;
+            height: 44px;
+            background: #EAEAEC;
+            border-radius: 6px;
+        }
+
+        label {
+            width: 113px;
+            height: 24px;
+            font-family: 'Nunito';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            color: #282739;
+
+        }
+    }
+}

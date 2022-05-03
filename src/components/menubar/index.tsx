@@ -19,7 +19,7 @@ const MenuSider = () => {
     return (
         <Sider className='Menubar'>
             <div className="Menubar-Logo">
-                <Link to={'/'}>
+                <Link to={'/home'}>
                     <img src={require('../../assets/logo/logoHome/Logoalta.png')} />
                 </Link>
             </div>

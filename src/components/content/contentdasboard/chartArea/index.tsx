@@ -11,7 +11,8 @@ import { IParams, ItemCharts } from 'types';
 const DasboardChartArea: React.FC<ItemCharts> = (props) => {
 
     const data = props.data
-    console.log('data', data)
+    const {control} : IParams = useParams()
+    const maxAxisX = control === 'day'? 31 : control === 'week' ? 7 : 11
     const config = {
         data,
         width: 754,
@@ -21,7 +22,7 @@ const DasboardChartArea: React.FC<ItemCharts> = (props) => {
         xAxis: {
             range: [0, 1],
             tickCount: 4,
-            max: 31
+            max: maxAxisX
         },
         yAxis: {
             max: 6000,

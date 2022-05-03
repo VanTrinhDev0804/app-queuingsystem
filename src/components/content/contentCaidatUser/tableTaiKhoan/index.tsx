@@ -3,31 +3,20 @@ import { Table } from 'antd'
 
 import './styles.scss'
 import { Link } from 'react-router-dom';
+import { AuthState } from 'redux/slice/authSlice';
 
-const TableTaiKhoan= () => {
-    const data = [];
-    for (let i = 1; i <= 10; i++) {
-        data.push({
-            key: i,
-            userName: 'tuyetnguyen@12',
-            hoten: 'Nguyen Văn A',
-            phone: '0919256712',
-            email: 'tuyetnguyen123@gmail.com',
-            vaitro:'Kế toán',
-            active: true,
-            update:'/caidat-user/capnhat'
-        });
-    }
+const TableTaiKhoan :React.FC<AuthState>= ( props) => {
 
+    const { userList } = props
     const columns = [
         {
             title: 'Tên đăng nhập',
-            dataIndex: 'userName',
+            dataIndex: 'username',
          
         },
         {
             title: 'Họ tên',
-            dataIndex: 'hoten',
+            dataIndex: 'name',
         },
         {
             title: 'Số điện thoại',
@@ -41,7 +30,7 @@ const TableTaiKhoan= () => {
         },
         {
             title: 'Vai trò',
-            dataIndex: 'vaitro',
+            dataIndex: 'role',
          
         },
         {
@@ -83,7 +72,7 @@ const TableTaiKhoan= () => {
         {
             title: '',
             dataIndex: 'update',
-            render: (link : string) => (
+            render: (link : string, record : any) => (
                 <Link to={link}
                     style={{
                         whiteSpace: 'nowrap'
@@ -98,7 +87,7 @@ const TableTaiKhoan= () => {
         <div className="Content-Table">
 
             <Table
-                dataSource={data}
+                dataSource={userList}
                 columns={columns} />
         </div>
     )
